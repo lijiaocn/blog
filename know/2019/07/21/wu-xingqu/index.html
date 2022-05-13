@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="博客模版：专业的人士可以借助短视频迅速蹿红，向更高层级演进。没有在一个领域里做到专业，做到8分以上，还不如不做">
+<meta name="keywords" content="博客模版,微信公众号,专业,兴趣">
+<meta name="author" content="李佶澳">
+
+<title>专业和兴趣就是壁垒 博客模版</title>
+
+<link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap.min.css">
+<!--link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap-theme.min.css"-->
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/default.css">
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/highlight.css">
+<link rel="alternate" type="application/rss+xml" title="博客模版" href="/feed.xml">
+<link rel="icon" href="/favicon.ico">
+
+<style type="text/css">
+body{
+	background-image: url(/blog/img/bg.png);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+</style>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "http://localhost:4001/blog/img/logo-112x112.jpg",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "http://localhost:4001"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "http://localhost:4001",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "博客模版",                    //组织或个人名称
+      "url": "http://localhost:4001",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          
+          
+          "name": "认知感悟",
+          "item": "http://localhost:4001/blog/c/know/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "思路感悟",
+          "item": "http://localhost:4001/blog/t/all#思路感悟"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "专业和兴趣就是壁垒",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "http://localhost:4001/blog/img/cover/1x1/baolei.jpg",  //至少：600*600 = 360 000
+        "http://localhost:4001/blog/img/cover/4x3/baolei.jpg",  //至少：800*600 = 480 000
+        "http://localhost:4001/blog/img/cover/16x9/baolei.jpg"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "李佶澳"    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "博客模版",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "http://localhost:4001/blog/img/logo-112x112.jpg" //发布机构Logo,遵循
+         }
+      },
+      "description": "专业的人士可以借助短视频迅速蹿红，向更高层级演进。没有在一个领域里做到专业，做到8分以上，还不如不做",
+      "mainEntityOfPage": "http://localhost:4001/blog/know/2019/07/21/wu-xingqu/",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+
+
+
+<!--Google ads 全局依赖代码 -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics 全局依赖代码-->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<!-- 需要尽早执行的js代码 -->
+<script async="async" src="/blog/assets/js/head.js" ></script>
+
+</head>
+<body>
+    <nav class="topnav">
+        <!-- display sm md lg -->
+<div class="container" >
+  <div class="navbar-header">
+    <button id="navb" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar" style="color:black"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand hidden-sm">
+      <span><a href="http://localhost:4001/blog/" title="主页">博客模版</a></span>
+      <span class="glyphicon glyphicon-hand-right" style="margin-left:15px"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="categories">
+    <ul class="nav navbar-nav">
+       
+      <li><a href="/blog/c/tutorial/">系列教程</a></li>
+       
+      <li><a href="/blog/c/book/">读书笔记</a></li>
+       
+      <li><a href="/blog/c/know/">认知感悟</a></li>
+       
+      <li><a href="/blog/c/money/">金钱管理</a></li>
+       
+      <li><a href="/blog/c/policy/">政策政务</a></li>
+       
+      <li><a href="/blog/c/skill/">软件技巧</a></li>
+       
+      <li><a href="/blog/c/share/">共享资源</a></li>
+      
+      <li><a href="/blog/t/all/">标签</a></li>
+    </ul>
+  </div>
+</div>
+
+    </nav>
+
+    <section class="banner">
+        
+    </section>
+
+    <section class="main">
+        <div class="main-header">
+            <div class="title">
+                <h1>专业和兴趣就是壁垒</h1>
+            </div>
+
+            <div class="pageheader">
+                <p>
+<span>
+<a target="_blank" style="color:red;font-weight:bold" href="https://www.lijiaocn.com/shop">每日红包&精选购物</a>
+</span>
+</p>
+
+
+            </div>
+
+            <div class="top_ad">
+                <!-- 顶部条幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1000173679"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                <br>
+            </div>
+
+            <div class="top_social">
+                
+            </div>
+        </div>
+
+        <div class="main-body">
+            <article class="content">
+                
+<div style="text-align:center">
+  <img src="/blog/img/cover/16x9/baolei.jpg" alt="专业和兴趣就是壁垒"/>
+</div>
+
+
+<div>
+  <h2 id="本篇目录">本篇目录</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#本篇目录" id="markdown-toc-本篇目录">本篇目录</a></li>
+  <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
+  <li><a href="#专业和兴趣就是壁垒" id="markdown-toc-专业和兴趣就是壁垒">专业和兴趣就是壁垒</a></li>
+  <li><a href="#不要用业余技能比拼别人的专业技能" id="markdown-toc-不要用业余技能比拼别人的专业技能">不要用业余技能比拼别人的专业技能</a></li>
+  <li><a href="#做不到9分还不如不做" id="markdown-toc-做不到9分还不如不做">做不到9分，还不如不做</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="说明">说明</h2>
+
+<p>前几天在微信公众号小号上发了一篇关于华为和写代码的文章，结果有点出乎意料，有3.3万阅读。</p>
+
+<p>这个小号只有600粉，唯一的推广就是转发到了自己的朋友圈，微信群都没用。就这样，这篇文章竟然扩散出去了。</p>
+
+<p>这让我很惊奇。</p>
+
+<p>因为它虽然沾了华为的热点，但内容上是偏技术的，没有点编码经验和技术经历，看这样的文章是感觉没啥意思的。</p>
+
+<h2 id="专业和兴趣就是壁垒">专业和兴趣就是壁垒</h2>
+
+<p>想来想去，有点明白原委了。我的微信好友，以及我的好友的好友，基本都是做技术的，带一点噱头的技术类文章容易获得关注、引起共鸣，继而扩散出去。</p>
+
+<p>如果我写的“震惊了”“这个小东西要命了”之类的内容，转发到朋友圈，分分钟钟被拉黑，还要承受同事们异样的眼光。</p>
+
+<p>因此如果创作技术类内容，我有先天的优势，我可以不费劲的、源源不断的输出高质量内容，起步就有上千的精准受众，而且分享意愿还很高。
+反之，如果去创作明星八卦、养生美妆，我会很痛苦，很难产，还扩散不出去。</p>
+
+<h2 id="不要用业余技能比拼别人的专业技能">不要用业余技能比拼别人的专业技能</h2>
+
+<p>正如上篇帖子中 @Casper 评论的，我们每天的工作、每天的所思所想，也就是正在专业从事的事情，都在不停地为我们积累所在领域的资源：</p>
+
+<blockquote>
+  <p>“感觉主要还是圈子问题，不知不觉中你积累了适合你文章受众的圈子，产出有共鸣的文字，被传播就自然而然了。”</p>
+</blockquote>
+
+<p>如果把这些「天赐」的资源弃之不顾，反而想杀入别人的专业领域，那是多么的想不开！</p>
+
+<p>前段时间在抖音上看到了一个特别搞笑的视频时，突然有点开悟，分析起这个视频的拍摄手法。</p>
+
+<p>一分析大惊失色，深感无望。</p>
+
+<p>一则短短的只有几十秒的视频，平均两秒钟切换一次镜头，都是不同角度的，加持特写、特效、音效。</p>
+
+<p>观看的时候感觉视频真好，好简单的视频，好像随随便便就能拍出来。仔细一分析才会发现，这几十秒视频至少要三五人耗费半天时间拍摄，再用半天时间剪辑加特效。
+这还没算上寻找灵感、剧本创作、布景和演员排练的时间。而演员显然也不是随便拉个人过来就能胜任的。</p>
+
+<p>对于这些精品短视频的创作者来说，这算些啥，哥儿们以前都是拍电视剧做电影的，都演了多少年的喜剧了，搞短视频那还不是牛刀杀鸡。
+这就是壁垒，这些专业的人士，可以借助短视频迅速蹿红，形成IP，进而向更高层级演进。</p>
+
+<p>依靠奇技淫巧，赚点流量费的业余草根们是玩不了的，除非拥有强大的兴趣和毅力，让自己变成了专业的。</p>
+
+<h2 id="做不到9分还不如不做">做不到9分，还不如不做</h2>
+
+<p>专业和兴趣就是壁垒的第二层含义是：一件事如果做不到8分、9分，那就没有任何用，还不如不做。</p>
+
+<p>随随便便就赚到点钱的机会有没有？</p>
+
+<p>当然有，而且一直有，写写文章、搞搞导购就可以。但是随随便便就赚到不少钱，并持续赚钱的机会，没有！</p>
+
+<p>如果没有在一个领域里做到专业，做到8分以上，就不会成为自己羡慕的那些案例里的主角。</p>
+
+<p>本文内容整理自 <a href="https://t.zsxq.com/vFIqrn2">知识星球赚钱笔记免费版</a> ，微博：<a href="https://weibo.com/6876203019/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1">赚钱笔记</a> ，微信公众号：<a href="https://www.lijiaocn.com/img/invest.jpg">我的资产</a>。</p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://www.lijiaocn.com" title="李佶澳的博客">李佶澳的博客</a></li>
+</ol>
+
+
+</div>
+
+<div class="copyright">
+    <!--div style="text-align:center;">
+    
+    <img style="max-width: 250px" src="/blog/img/money.jpg"/>
+    <p><a style="text-align:center;color:red" href="/blog/img/money.jpg">微信公众号</a></p>
+    
+</div-->
+
+
+<div style="text-align:center">
+    <p style="color:gray"><span>作者:李佶澳</span>&nbsp;&nbsp;<span>更新时间:2019-07-21T17:32:12+0800</span></p>
+
+</div>
+
+
+<!-- 底部二维码并列 -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1398175214"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->
+
+</div>
+
+<div style="text-align:center">
+  <p>
+
+<span class="glyphicon glyphicon-folder-open" style="color:lightgray"></span>
+
+
+<span>&nbsp<a href="/blog/c/know/">认知感悟</a>&nbsp</span>
+
+
+
+<span class="glyphicon glyphicon-tag" style="color:lightgray"></span>
+<span><a href="/blog/t/all/#思路感悟">思路感悟</a>&nbsp</span>
+
+</p>
+
+</div>
+
+<div>
+  
+<div class="prevnext">
+    <div style="text-align:left">
+        
+        <span>上一篇：</span><span><a href="/blog/know/2019/07/21/qimeng/">启蒙免费，情报收费</a></span>
+        
+    </div>
+
+    <div style="text-align:right">
+      
+      <span>下一篇：</span><span><a href="/blog/know/2019/07/21/wu-quan-ju-guan/">肆意流动的金钱洪流从普罗大众中形成</a></span>
+       
+    </div>
+</div>
+
+
+</div>
+
+            </article>
+
+
+            
+            <aside class="rsidebar">
+                <div class="rsidebar-content">
+  <div class="searchbar ">
+    <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+    <div class="row">
+      <div class="">
+        <input name="sitesearch" type="hidden" value="lijiaocn.com">
+        <input autocomplete="on" class="form-controls search" name="q" placeholder="站内搜索" required="required"  type="text">
+        <button class="button" type="submit">Google</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!--div class="">
+    <h4 style="color:brown">专属公众号（微信扫一扫）</h4>
+    <img src="/blog/img/self.jpg"></img>
+  </div-->
+
+  <div class="">
+    <a href="https://www.lijiaocn.com/shop"><h3>每日红包</h3></a>
+    <a target="_blank" style="" href="https://www.amazon.cn?tag=znrio-23">亚马逊图书</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WYppWas1DZpVXZmcDOwMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiRyUSbvNmLzYTMuU3b5ZkMlYkMlE0MlAHd0hWP0Zibj9">网易严选</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?site_id=224482&lid=4193&aid=61&euid=lijiaocn&t=http%3A%2F%2Fwww.360buy.com%2F">京东</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=lAHd0hWP0Zibj9WYppWas1DZpVXZmQDOzMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiJpFWbvVHZfB3ckR0Ml02byZmeGNTJGJTJt92Yu8Wd69WY6ZkMlYkMlE0M">造作</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=m0DZpVXZmITO5MTPklWYmAjMzUjMy0DZp9VZ0l2cm02bj5CdyF2d55yd3dnRyUiRyUSQzUycwRHdo1Dd" >艺网</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ibj9WYppWas1DZpVXZmMDMxITPklWYmAjMzUjMy0DZp9VZ0l2cmYiJuNmLt92YukHbu9WZz9mcuc3d3ZkMlYkMlE0MlAHd0hWP0Z">roseonly</a>
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=o1DdmYXYu1DZpVXZmIDO5cTPklWYmITMyUzM30DZp9VZ0l2cmYiJGJTJuNmLt92YuMXYklGZh5yd3dnRyUiRyUSQzUycwRHd&dm_fid=16055">阿迪达斯</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Hd0hWP0Zidh5WPklWdlZyN4MTPklWYmUTMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUSbvNmLsxWYtZnL3d3dGJTJGJTJBNTJzB&dm_fid=16055">华为</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=0RHa9QnJyFmYlRWaz1DZpVXZmATNwkTPklWYmMDMyUzM30DZp9VZ0l2cmYkMlA3boNnRyUibjZkMl02bj5icv52bolGauc3d3ZkMlYkMlE0MlMHc&dm_fid=16055">荣耀</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=j9WYppWas1DZpVXZmczM3ETPklWYmAjMzUjMy0DZp9VZ0l2cmYiJGJTJt92YuEGbvF2auc3d3ZkMlYkMlE0MlAHd0hWP0Zib">考拉海购</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Ha9QnJ2Fmb9QWa1VmJ0YTPklWYmYDMyUzM30DZp9VZ0l2cmYiJGJTJt92YucmbhR2ZuFGZuc3d3ZkMlYkMlE0MlMHc0R&dm_fid=16055">当当</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ukWepFXauAXa2ZkMlYkMlE0MlMHc0RHa9QnJ2Fmb9QWa1VmJ5UDN0ETPklWYmkDMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUyclxWYzRnbp9maGJTJu9WauVnRyUSe0lmdpR3YhZkMlAVSWVDbtRHaGJTJt92Y&dm_fid=16055">爱奇艺联名会员（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WaqlGb9QWa1VmJ0ITMwETPklWYmEDM5kzM30DZp9VZ0l2cm02bj5ibhVHdpVWbukmRyUiRyUSQzUycwRHdo1Ddm42YvF&dm_fid=16055">美团外卖红包（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=2Fmb9QWa1VmJ3ITMwETPklWYmADMyUzM30DZp9VZ0l2cmYiJt92Yu4WY1RXal1mLpZkMlYkMlE0MlMHc0RHa9QnJ&dm_fid=16052">美团闪购红包（手机打开）</a>&nbsp;
+  </div>
+
+  <div class="">
+    <img src="/blog/img/money.jpg"></img>
+  </div>
+  <!--div class="">
+    <h4 style="color:brown">淘宝天猫优惠券（微信扫一扫）</h4>
+    <img src="https://www.lijiaocn.com/img/tuanhaohuo.jpg"></img>
+  </div-->
+
+  <div class="">
+    <h5 style="color:gray">赞助商广告</h5>
+  <!-- 右侧边栏广告 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2723439605"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告2 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4426808013"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告3 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="3551466770"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+</div>
+
+            </aside>
+            
+        </div>
+        <div class="main-footer">
+            <div class="page_bottom_ad">
+                <!-- 底部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4061827929"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+
+            <div class="related">
+                <!-- Google 匹配内容页面-->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-format="autorelaxed"
+   data-ad-client="ca-pub-8176866190626448"
+   data-ad-slot="6443696990"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+    <p>
+<span></span>
+<span>Copyright @2011-2019 All rights reserved.</span>
+</p>
+
+<p>
+<span>友情链接:</span>&nbsp;
+<span><a style="color:white"  href="/note/">小鸟笔记</a></span>&nbsp;
+<span><a style="color:white"  href="/soft/">软件手册</a></span>&nbsp;
+<span><a style="color:white"  href="/prog/">编程手册</a></span>&nbsp;
+<span><a style="color:white"  href="/oper/">运营手册</a></span>&nbsp;
+<span><a style="color:white"  href="/movie/">爱马影视</a></span>&nbsp;
+<span><a style="color:white"  href="/class/">网络课程</a></span>&nbsp;
+<span><a style="color:white"  href="/skill/">奇技淫巧</a></span>&nbsp;
+<span><a style="color:white"  href="/tutorial/">课程文档</a></span>&nbsp;
+<span><a style="color:white"  href="/wechat/news/">精选文章</a></span>&nbsp;
+<span><a style="color:white"  href="https://www.baidu.com/">百度搜索</a></span>
+<span><a style="color:white"  href="https://www.google.com/">谷歌搜索</a></span>
+</p>
+
+    </footer>
+
+    <script src="/blog/assets/js/jquery-1.24.4.min.js"></script>
+    <script src="/blog/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/blog/assets/js/body.js"></script>
+</body>
+</html>

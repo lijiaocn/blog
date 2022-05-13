@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="博客模版：了解最基础的 JS 语法，譬如变量、字符串、表达式，函数的定义和调用方法等，z掌握最基本的语法，为后面更复杂的知识做铺垫">
+<meta name="keywords" content="博客模版,nodejs,js语法,语法基础">
+<meta name="author" content="李佶澳">
+
+<title>JavaScript/ES6 快速上手教程（五）： 语言基础 博客模版</title>
+
+<link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap.min.css">
+<!--link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap-theme.min.css"-->
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/default.css">
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/highlight.css">
+<link rel="alternate" type="application/rss+xml" title="博客模版" href="/feed.xml">
+<link rel="icon" href="/favicon.ico">
+
+<style type="text/css">
+body{
+	background-image: url(/blog/img/bg.png);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+</style>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "http://localhost:4001/blog/img/logo-112x112.jpg",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "http://localhost:4001"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "http://localhost:4001",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "博客模版",                    //组织或个人名称
+      "url": "http://localhost:4001",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          
+          
+          "name": "系列教程",
+          "item": "http://localhost:4001/blog/c/tutorial/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "语法",
+          "item": "http://localhost:4001/blog/t/all#语法"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "JavaScript/ES6 快速上手教程（五）： 语言基础",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "http://localhost:4001/blog/img/cover/1x1/javascript.005.jpg",  //至少：600*600 = 360 000
+        "http://localhost:4001/blog/img/cover/4x3/javascript.005.jpg",  //至少：800*600 = 480 000
+        "http://localhost:4001/blog/img/cover/16x9/javascript.005.jpg"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "李佶澳"    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "博客模版",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "http://localhost:4001/blog/img/logo-112x112.jpg" //发布机构Logo,遵循
+         }
+      },
+      "description": "了解最基础的 JS 语法，譬如变量、字符串、表达式，函数的定义和调用方法等，z掌握最基本的语法，为后面更复杂的知识做铺垫",
+      "mainEntityOfPage": "http://localhost:4001/blog/tutorial/2019/06/22/javascript-05-basic/",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+
+
+
+<!--Google ads 全局依赖代码 -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics 全局依赖代码-->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<!-- 需要尽早执行的js代码 -->
+<script async="async" src="/blog/assets/js/head.js" ></script>
+
+</head>
+<body>
+    <nav class="topnav">
+        <!-- display sm md lg -->
+<div class="container" >
+  <div class="navbar-header">
+    <button id="navb" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar" style="color:black"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand hidden-sm">
+      <span><a href="http://localhost:4001/blog/" title="主页">博客模版</a></span>
+      <span class="glyphicon glyphicon-hand-right" style="margin-left:15px"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="categories">
+    <ul class="nav navbar-nav">
+       
+      <li><a href="/blog/c/tutorial/">系列教程</a></li>
+       
+      <li><a href="/blog/c/book/">读书笔记</a></li>
+       
+      <li><a href="/blog/c/know/">认知感悟</a></li>
+       
+      <li><a href="/blog/c/money/">金钱管理</a></li>
+       
+      <li><a href="/blog/c/policy/">政策政务</a></li>
+       
+      <li><a href="/blog/c/skill/">软件技巧</a></li>
+       
+      <li><a href="/blog/c/share/">共享资源</a></li>
+      
+      <li><a href="/blog/t/all/">标签</a></li>
+    </ul>
+  </div>
+</div>
+
+    </nav>
+
+    <section class="banner">
+        
+    </section>
+
+    <section class="main">
+        <div class="main-header">
+            <div class="title">
+                <h1>JavaScript/ES6 快速上手教程（五）： 语言基础</h1>
+            </div>
+
+            <div class="pageheader">
+                <p>
+<span>
+<a target="_blank" style="color:red;font-weight:bold" href="https://www.lijiaocn.com/shop">每日红包&精选购物</a>
+</span>
+</p>
+
+
+            </div>
+
+            <div class="top_ad">
+                <!-- 顶部条幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1000173679"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                <br>
+            </div>
+
+            <div class="top_social">
+                
+            </div>
+        </div>
+
+        <div class="main-body">
+            <article class="content">
+                
+<div style="text-align:center">
+  <img src="/blog/img/cover/16x9/javascript.005.jpg" alt="JavaScript/ES6 快速上手教程（五）： 语言基础"/>
+</div>
+
+
+<div>
+  <h2 id="本篇目录">本篇目录</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#本篇目录" id="markdown-toc-本篇目录">本篇目录</a></li>
+  <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
+  <li><a href="#变量" id="markdown-toc-变量">变量</a>    <ul>
+      <li><a href="#变量的初始赋值" id="markdown-toc-变量的初始赋值">变量的初始赋值</a></li>
+      <li><a href="#变量的作用域" id="markdown-toc-变量的作用域">变量的作用域</a></li>
+    </ul>
+  </li>
+  <li><a href="#常量" id="markdown-toc-常量">常量</a></li>
+  <li><a href="#字符串" id="markdown-toc-字符串">字符串</a></li>
+  <li><a href="#数组" id="markdown-toc-数组">数组</a></li>
+  <li><a href="#函数" id="markdown-toc-函数">函数</a>    <ul>
+      <li><a href="#函数声明" id="markdown-toc-函数声明">函数声明</a></li>
+      <li><a href="#箭头式声明" id="markdown-toc-箭头式声明">箭头式声明</a></li>
+      <li><a href="#函数的实现" id="markdown-toc-函数的实现">函数的实现</a></li>
+      <li><a href="#尾递归的效率极高" id="markdown-toc-尾递归的效率极高">尾递归的效率极高</a></li>
+      <li><a href="#特殊调用形式" id="markdown-toc-特殊调用形式">特殊调用形式</a></li>
+      <li><a href="#函数作用域" id="markdown-toc-函数作用域">函数作用域</a></li>
+    </ul>
+  </li>
+  <li><a href="#对象" id="markdown-toc-对象">对象</a></li>
+  <li><a href="#symbol" id="markdown-toc-symbol">Symbol</a></li>
+  <li><a href="#class" id="markdown-toc-class">Class</a></li>
+  <li><a href="#顶层对象" id="markdown-toc-顶层对象">顶层对象</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="说明">说明</h2>
+
+<p>了解最基础的 JS 语法，譬如变量、字符串、表达式，函数的定义和调用方法等，掌握最基本的语法，为后面做铺垫。</p>
+
+<p>JavaScript 的最大特点就是语法细节非常多！很多比较底层的属性也都暴露了出来，各种细节、各种场景的下各种情况铺天盖地涌来，学习的时候会比较痛苦。
+细节需要在使用过程中逐渐掌握，如果一开始就试图掌握全部，会步履维艰。</p>
+
+<p>本篇只涉及最基础、最常用的语法，不对语法细节进行全面覆盖，看完本篇的内容后，就能看懂绝大多数的 JS 代码，并能够编写 JS 代码。Promise、async 等异步编程方法放在下一篇，本篇不涉及。</p>
+
+<h2 id="变量">变量</h2>
+
+<p>ES6 增加了 <code class="language-plaintext highlighter-rouge">let</code> 命令，用于声明在当前代码块有效的变量（即块级作用域）。</p>
+
+<h3 id="变量的初始赋值">变量的初始赋值</h3>
+
+<p>有些赋值方式纯粹是语法糖、编码技巧，类似于<code class="language-plaintext highlighter-rouge">茴</code>字有几种写法。知道、能看懂就行，写代码的时候使用常规写法才是值得被表扬的做法。</p>
+
+<p>ES6 支持变量的解构（Destructuring）赋值，即等号左右两边进行匹配（注意多个变量是数组的形式）：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>没有找到对应值的变量的值是 <code class="language-plaintext highlighter-rouge">undefined</code>。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">foo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>         <span class="c1">// foo 是 undefined</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">bar</span><span class="p">,</span> <span class="nx">foo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">];</span>   <span class="c1">// foo 是 undefined</span>
+</code></pre></div></div>
+
+<p>可以在解构的时候设置默认值，只有在等号右边找不到对应值的时候，才会使用默认值：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">foo</span> <span class="o">=</span> <span class="kc">true</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>  <span class="c1">// foo 是 true</span>
+</code></pre></div></div>
+
+<p>等号右边多出来的值被忽略：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>  <span class="c1">// 3 被忽略</span>
+</code></pre></div></div>
+
+<p>将剩余的参数全部接收为一个数组中的成员：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="p">...</span><span class="nx">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>  <span class="c1">// y = [2,3]</span>
+</code></pre></div></div>
+
+<p>解构可以嵌套：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="p">[</span><span class="nx">b</span><span class="p">],</span> <span class="nx">d</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">];</span>    <span class="c1">// b = 2 </span>
+</code></pre></div></div>
+
+<p>解构也可以用对象赋值，这时候等号左右两边都要用 <code class="language-plaintext highlighter-rouge">{ }</code>，并且顺序无关，按照属性名称取值：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">{</span> <span class="nx">bar</span><span class="p">,</span> <span class="nx">foo</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aaa</span><span class="dl">'</span><span class="p">,</span> <span class="na">bar</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bbb</span><span class="dl">'</span> <span class="p">};</span>
+<span class="nx">foo</span> <span class="c1">// "aaa"</span>
+<span class="nx">bar</span> <span class="c1">// "bbb"</span>
+</code></pre></div></div>
+
+<p>这方面还有很多细节，不一一列举了，<a href="https://es6.ruanyifeng.com/#docs/destructuring">变量的解构赋值</a> 中能够找到。</p>
+
+<p>一个赋值操作有非常多的细节，不是好事！记住这些鸡毛蒜皮浪费大量精力，非特殊情况，不要使用需要让人动脑思考的写法。</p>
+
+<p>解构赋值主要是提供函数多值返回的功能：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 返回一个数组</span>
+
+<span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="nx">example</span><span class="p">();</span>
+
+<span class="c1">// 返回一个对象</span>
+
+<span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">bar</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="p">{</span> <span class="nx">foo</span><span class="p">,</span> <span class="nx">bar</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">example</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>以及默认参数：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">ajax</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">beforeSend</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+  <span class="nx">cache</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">complete</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+  <span class="nx">crossDomain</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nb">global</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="c1">// ... more config</span>
+<span class="p">}</span> <span class="o">=</span> <span class="p">{})</span> <span class="p">{</span>
+  <span class="c1">// ... do stuff</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>以及在遍历和导入模块时使用：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+<span class="nx">map</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">first</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">map</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">second</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">world</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> is </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// first is hello</span>
+<span class="c1">// second is world</span>
+
+
+<span class="c1">// 获取键名</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// 获取键值</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[,</span><span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">map</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>导入模块时使用对象解构：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">SourceMapConsumer</span><span class="p">,</span> <span class="nx">SourceNode</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">source-map</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="变量的作用域">变量的作用域</h3>
+
+<p>作用域有三个：顶级作用域、函数作用域、块级作用域。JavaScript 在 ES6 之前是没有的块级作用域的，因此会一些奇葩的行为，ES6 引入块级作用域后，js 的作用域和其它语言相似。</p>
+
+<p>块级作用域必须用 <code class="language-plaintext highlighter-rouge">{ }</code> 包裹，如果没有 <code class="language-plaintext highlighter-rouge">{ }</code> ，就不是块级作用域。let 指令和严格模式下的变量和函数，只能在当前作用域的顶层声明，因此如果省略了 if 后面的大括号，会有奇怪的行为：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 第一种写法，报错，let 不在新的块级作用域中，也不在当前作用顶层，所以报错</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// 第二种写法，不报错，let 在新的块级作用域中，且在顶层，所以不报错</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>下面的代码中，变量 a 能被打印出来， 变量 b 会触发错误：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">a is defined: %d</span><span class="dl">"</span><span class="p">,</span><span class="nx">a</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">b is not defined: %d</span><span class="dl">"</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>执行结果如下：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node ./app.js
+a is defined: 1
+/Users/lijiao/Work/workspace/javascript/05-ES6-Basic-Var/app.js:14
+console.log<span class="o">(</span><span class="s2">"b is not defined: %d"</span>,b<span class="o">)</span>
+
+ReferenceError: b is not defined
+</code></pre></div></div>
+
+<p>用 <code class="language-plaintext highlighter-rouge">let</code> 声明的变量和其它语言中的变量的作用域基本相似，不是特殊情况就不要用 let 之外的变量声明方式了，否则会带来麻烦。
+譬如下面的这段代码，因为在 for 循环内用 var 声明的 i 在 for 之外也有效且是同一个变量，a[*]() 的输出结果都是 i 最后的值 10：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//错误用法演示！</span>
+<span class="kd">var</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">array1</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">array1</span><span class="p">[</span><span class="mi">6</span><span class="p">]();</span> <span class="c1">// 10</span>
+<span class="nx">array1</span><span class="p">[</span><span class="mi">7</span><span class="p">]();</span> <span class="c1">// 10</span>
+</code></pre></div></div>
+
+<p>把 for 中的 var 换成 let 才会得到预期的结果，需要注意换成 let 后，每次 for 循转都是声明一个新的 i，但是 JS 的 for 语句会根据上一次循环的值设置新的 i 的值，所有数组中的每个函数都打印的是不同的数值：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//正确用法演示！</span>
+<span class="kd">var</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">array2</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">array2</span><span class="p">[</span><span class="mi">6</span><span class="p">]();</span> <span class="c1">// 6</span>
+<span class="nx">array2</span><span class="p">[</span><span class="mi">7</span><span class="p">]();</span> <span class="c1">// 7</span>
+</code></pre></div></div>
+
+<p>使用 let 后，变量提升这个奇怪的特性也没有了，变量必须先声明后使用、且不能重复声明同名变量，这也和其它语言的做法一致。</p>
+
+<h2 id="常量">常量</h2>
+
+<p>常量用 <code class="language-plaintext highlighter-rouge">const</code> 声明，作用域行为与用 let 声明的变量相同，常量必须在声明时初始化值，声明后不可以再改变。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">PI</span><span class="o">=</span><span class="mf">3.1415</span><span class="p">;</span>
+<span class="nx">PI</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>         <span class="c1">// 修改常量值，报错</span>
+<span class="kd">const</span> <span class="nx">foo</span><span class="p">;</span>      <span class="c1">// 常量声明时没有初始化，报错</span>
+</code></pre></div></div>
+
+<p>需要特别注意，不能改变的是<code class="language-plaintext highlighter-rouge">常量指向的内存地址</code>！如果常量指向了一个对象，常量的指向是不能修改，被常量所指的对象是可以修改的：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>       <span class="c1">//更改常量的指向，报错</span>
+<span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">//更改常量所指的对象的值，不报错</span>
+</code></pre></div></div>
+
+<p>如果要让一个对象的值不可修改，在<code class="language-plaintext highlighter-rouge">严格模式</code>中使用 <code class="language-plaintext highlighter-rouge">Object.freeze</code> 方法冻结对象，注意必须是严格模式：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">([]);</span>
+<span class="nx">array2</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>      <span class="c1">//报错，对象被冻结不能修改</span>
+</code></pre></div></div>
+
+<p>冻结了对象不等于冻结了对象的属性，对象的属性需要单独冻结，例如下面的函数 constantize 冻结了对象 obj 和它的所有属性：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">author</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="nx">author</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">lijiaocn</span><span class="dl">"</span>
+<span class="nx">author</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="kd">var</span> <span class="nx">constantize</span> <span class="o">=</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="k">typeof</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="nx">constantize</span><span class="p">(</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">constantize</span><span class="p">(</span><span class="nx">author</span><span class="p">)</span>
+<span class="nx">author</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">32</span>     <span class="c1">// 修改不生效</span>
+<span class="nx">author</span><span class="p">.</span><span class="nx">grade</span><span class="o">=</span> <span class="mi">3</span>     <span class="c1">// 修改不生效</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">author</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="字符串">字符串</h2>
+
+<p>字符串都是 utf-8 编码，可以直接使用编码，例如 <code class="language-plaintext highlighter-rouge">'\uDF06\uD834'</code>。</p>
+
+<p>字符串遍历：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">c</span> <span class="k">of</span> <span class="dl">'</span><span class="s1">foo中国</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>运行输出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f
+o
+o
+中
+国
+</code></pre></div></div>
+
+<p>ES6 引入了模版字符串，支持多行，以及嵌入变量，使用的是反引号：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">author</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">lijiaocn</span><span class="dl">"</span>
+<span class="kd">let</span> <span class="nx">info</span> <span class="o">=</span> <span class="s2">`author is </span><span class="p">${</span><span class="nx">author</span><span class="p">}</span><span class="s2">
+@ 2019-06-20`</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>运行输出：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>author is lijiaocn
+@ 2019-06-20
+</code></pre></div></div>
+
+<h2 id="数组">数组</h2>
+
+<p>数组用 <code class="language-plaintext highlighter-rouge">[ ]</code> 包裹。</p>
+
+<p>数组可以用扩展运算符 <code class="language-plaintext highlighter-rouge">...</code> 拆开，注意扩展运算符位于数组的前面：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>输出为：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span> 1, 2, 3 <span class="o">]</span>
+1 2 3
+</code></pre></div></div>
+
+<p>数组变量指向的是数组的地址，因此将数组变量赋值给另一个变量，两个变量是指向了同一个数组。扩展运算符可以用来复制数组：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">a2</span> <span class="o">=</span> <span class="nx">a1</span>          <span class="c1">// 指向同一个数组</span>
+<span class="nx">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+
+<span class="kd">let</span> <span class="nx">a3</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">a1</span><span class="p">];</span>    <span class="c1">// 复制数组，写法1</span>
+<span class="nx">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">21</span>
+
+<span class="kd">let</span> <span class="p">[...</span><span class="nx">a4</span><span class="p">]</span> <span class="o">=</span> <span class="nx">a1</span><span class="p">;</span>    <span class="c1">// 复制数组，写法2</span>
+<span class="nx">a4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">31</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a1</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a2</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出结果为：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">22</span> <span class="p">]</span>
+<span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">22</span> <span class="p">]</span>
+<span class="p">[</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span> <span class="p">]</span>
+<span class="p">[</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">22</span> <span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="函数">函数</h2>
+
+<p>ES6 的函数的声明方式没有变换，增加了对默认值、变长参数的支持，提供了一种新的声明方法：箭头函数。</p>
+
+<h3 id="函数声明">函数声明</h3>
+
+<p>支持默认参数，默认参数的值可以表达式，是惰性求值的，即用到的时候重新计算：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 参数默认值</span>
+<span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">World</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>函数的参数可以解构赋值：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//解构赋值</span>
+<span class="kd">function</span> <span class="nx">foo</span><span class="p">({</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">})</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>函数的 length 属性返回指定的默认值的参数个数：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">({</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">})</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>    <span class="c1">// 1 </span>
+</code></pre></div></div>
+
+<p>需要特别注意如果参数默认值是表达式，且用到了其它的函数参数，这些函数参数会覆盖函数外部的同名变量，例如：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// 输出结果是 2，因为函数内的 x = 2，y = x</span>
+</code></pre></div></div>
+
+<p>可以为不可缺省的参数设置一个抛出异常的默认值，从而在参数被缺省时报错：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//不可缺省的参数</span>
+<span class="kd">function</span> <span class="nx">throwIfMissing</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Missing parameter</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">mustFunc</span><span class="p">(</span><span class="nx">mustBeProvided</span> <span class="o">=</span> <span class="nx">throwIfMissing</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">mustBeProvided</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">mustFunc</span><span class="p">()</span>   <span class="c1">// 没有传入不可缺省的参数，报错</span>
+</code></pre></div></div>
+
+<p>ES6 支持不定长参数（rest 参数），不定长参数是一个数组，且必须是最后一个参数，函数的 length 属性中不包含不定长参数：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//不定长参数</span>
+<span class="kd">function</span> <span class="nx">restFunc</span><span class="p">(...</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">val</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restFunc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1">// 10</span>
+</code></pre></div></div>
+
+<h3 id="箭头式声明">箭头式声明</h3>
+
+<p>ES6 提供了箭头式声明函数的方法，箭头函数是一个语法糖，箭头 <code class="language-plaintext highlighter-rouge">=&gt;</code> 前面是函数的输入参数，后面是函数体或函数的返回值：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//箭头函数</span>
+<span class="kd">var</span> <span class="nx">arrowFunc1</span> <span class="o">=</span> <span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">v</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">arrowFunc2</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">arrowFunc3</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">arrowFunc4</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrowFunc1</span><span class="p">(</span><span class="dl">"</span><span class="s2">Func1</span><span class="dl">"</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrowFunc2</span><span class="p">())</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrowFunc3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrowFunc4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>如果 =&gt; 后面的返回值是一个对象，需要用 <code class="language-plaintext highlighter-rouge">( )</code> 包裹，防止对象的 <code class="language-plaintext highlighter-rouge">{ }</code> 被当作代码块：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">getTempItem</span> <span class="o">=</span> <span class="nx">id</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="nx">id</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Temp</span><span class="dl">"</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>箭头函数几个特点：</p>
+
+<ol>
+  <li>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象；</li>
+  <li>箭头函数不能被作为构造函数使用，不能使用 new；</li>
+  <li>函数体内不能使用 agruments 对象；</li>
+  <li>不能使用 yield 命令，箭头函数不能被用作 Generator 函数。</li>
+</ol>
+
+<p>在箭头函数内部， this 对象的指向是固定的，即定义时所在的对象，这一点不同于非箭头函数。因此包含 this 对象的方法等需要动态绑定 this 的函数不能是箭头函数。</p>
+
+<h3 id="函数的实现">函数的实现</h3>
+
+<p>ES6 中如果函数参数使用了默认值、解构赋值、扩展运算符，函数内部不能在设定为严格模式：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">cannotStrictFunc</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+  <span class="c1">// code</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>运行时会报错：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="s1">'use strict'</span><span class="p">;</span>
+  ^^^^^^^^^^^^
+
+SyntaxError: Illegal <span class="s1">'use strict'</span> directive <span class="k">in function </span>with non-simple parameter list
+</code></pre></div></div>
+
+<p>这是因为 <code class="language-plaintext highlighter-rouge">use strict</code> 必须在作用域的最开始处，如果函数参数使用了上述特性，那么就会在 use strict 之前进行变量操作，所以不合法。</p>
+
+<h3 id="尾递归的效率极高">尾递归的效率极高</h3>
+
+<p>如果一个函数要实现成递归形式的，那么一定做成尾递归，即在函数最后返回函数自身的调用：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Fibonacci2</span> <span class="p">(</span><span class="nx">n</span> <span class="p">,</span> <span class="nx">ac1</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">,</span> <span class="nx">ac2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">ac2</span><span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">Fibonacci2</span> <span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">ac2</span><span class="p">,</span> <span class="nx">ac1</span> <span class="o">+</span> <span class="nx">ac2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>因为函数最后又是回到自身，之前保留的堆栈信息可以直接丢弃，大量节省内存，这就是“尾调用优化”（Tail call optimization）。</p>
+
+<p>尾调用优化只在 ES6 的严格模式下开启。</p>
+
+<h3 id="特殊调用形式">特殊调用形式</h3>
+
+<p>函数有一种特殊的调用形式：函数名+模版字符串（<a href="https://es6.ruanyifeng.com/#docs/string#%E6%A0%87%E7%AD%BE%E6%A8%A1%E6%9D%BF">标签模版</a>）。</p>
+
+<p>例如：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="s2">`123`</span>
+</code></pre></div></div>
+<p>等同于：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>模版字符串会被展开作为多个参数传入函数：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="nx">tag</span><span class="s2">`Hello </span><span class="p">${</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="p">}</span><span class="s2"> world </span><span class="p">${</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span> <span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="c1">// 等同于</span>
+<span class="nx">tag</span><span class="p">([</span><span class="dl">'</span><span class="s1">Hello </span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1"> world </span><span class="dl">'</span><span class="p">,</span> <span class="dl">''</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>这种调用方式通常用来对模版字符串做特殊处理，譬如过滤 HTML 字符串、多语言转换等。</p>
+
+<p>对字符串进行过滤处理：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">let </span>message <span class="o">=</span>
+  SaferHTML<span class="sb">`</span>&lt;p&gt;<span class="k">${</span><span class="nv">sender</span><span class="k">}</span> has sent you a message.&lt;/p&gt;<span class="sb">`</span><span class="p">;</span>
+
+<span class="k">function </span>SaferHTML<span class="o">(</span>templateData<span class="o">)</span> <span class="o">{</span>
+  <span class="nb">let </span>s <span class="o">=</span> templateData[0]<span class="p">;</span>
+  <span class="k">for</span> <span class="o">(</span><span class="nb">let </span>i <span class="o">=</span> 1<span class="p">;</span> i &lt; arguments.length<span class="p">;</span> i++<span class="o">)</span> <span class="o">{</span>
+    <span class="nb">let </span>arg <span class="o">=</span> String<span class="o">(</span>arguments[i]<span class="o">)</span><span class="p">;</span>
+
+    // Escape special characters <span class="k">in </span>the substitution.
+    s +<span class="o">=</span> arg.replace<span class="o">(</span>/&amp;/g, <span class="s2">"&amp;amp;"</span><span class="o">)</span>
+            .replace<span class="o">(</span>/&lt;/g, <span class="s2">"&amp;lt;"</span><span class="o">)</span>
+            .replace<span class="o">(</span>/&gt;/g, <span class="s2">"&amp;gt;"</span><span class="o">)</span><span class="p">;</span>
+
+    // Don<span class="s1">'t escape special characters in the template.
+    s += templateData[i];
+  }
+  return s;
+}
+</span></code></pre></div></div>
+
+<h3 id="函数作用域">函数作用域</h3>
+
+<p>函数自身也是变量，ES5 规定函数只能在顶层和函数作用域中声明，浏览器为了兼容旧代码都没有遵守，ES6 引入了块级作用域，明确允许在块级作用域中声明函数。但是：</p>
+
+<p><strong>不要在块级作用域中声明函数！不要给自己找麻烦。</strong></p>
+
+<p>ES6 规定在块级作用域中声明的函数，类似于用 let 声明的变量，仅在当前作用域有效。但实际情况比这复杂，浏览器的 ES6 块级作用域内的函数相当于用 var 申明，在 node 中又是一种情况！</p>
+
+<p>下面代码用 node 运行的时候，会提示 f 类型不是函数：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am outside!</span><span class="dl">'</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 重复声明一次函数f</span>
+    <span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am inside!</span><span class="dl">'</span><span class="p">);</span> <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">typeof f is %s</span><span class="dl">"</span><span class="p">,</span> <span class="k">typeof</span> <span class="nx">f</span><span class="p">)</span>
+  <span class="nx">f</span><span class="p">();</span>
+<span class="p">}());</span>
+</code></pre></div></div>
+
+<p>输出如下， f 的类型是 undefined：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node ./app.js
+typeof f is undefined
+/Users/lijiao/Work/workspace/javascript/06-ES6-Basic-Func/app.js:16
+  f<span class="o">()</span><span class="p">;</span>
+  ^
+TypeError: f is not a <span class="k">function</span>
+...
+</code></pre></div></div>
+
+<p>但是将在函数的 if 语句中声明的函数的名字改一下，例如：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am outside!</span><span class="dl">'</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 改一下函数名</span>
+    <span class="kd">function</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am inside!</span><span class="dl">'</span><span class="p">);</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">typeof f is %s</span><span class="dl">"</span><span class="p">,</span> <span class="k">typeof</span> <span class="nx">f</span><span class="p">)</span>
+  <span class="nx">f</span><span class="p">();</span>
+<span class="p">}());</span>
+</code></pre></div></div>
+
+<p>运行结果不相同了，f 是在函数外部声明的函数：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node ./app.js
+typeof f is <span class="k">function
+</span>I am outside!
+</code></pre></div></div>
+
+<h2 id="对象">对象</h2>
+
+<p>对象用 <code class="language-plaintext highlighter-rouge">{ }</code> 包裹，是 key-value 对的组合，值可以是函数。</p>
+
+<p>定义方式如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">object1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="na">sum</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object1</span><span class="p">.</span><span class="nx">sum</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>属性名称可以省略，变量的名称或者函数名称将被用作属性名：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">object2</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">x</span><span class="p">,</span>
+  <span class="nx">y</span><span class="p">,</span>
+  <span class="nx">sum</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object2</span><span class="p">.</span><span class="nx">sum</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>属性名可以用 <code class="language-plaintext highlighter-rouge">[表达式]</code> 的形式表示，如果表达式是一个对象，就被认为是字符串 <code class="language-plaintext highlighter-rouge">[object OBject]</code>：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 属性表达式</span>
+<span class="kd">const</span> <span class="nx">keyA</span> <span class="o">=</span> <span class="p">{</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">};</span>
+<span class="kd">const</span> <span class="nx">keyB</span> <span class="o">=</span> <span class="p">{</span><span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">object3</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">keyA</span><span class="p">]:</span> <span class="dl">'</span><span class="s1">valueA</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">[</span><span class="nx">keyB</span><span class="p">]:</span> <span class="dl">'</span><span class="s1">valueB</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object3</span><span class="p">[</span><span class="nx">keyA</span><span class="p">])</span>   <span class="c1">// 输出 valueB</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object3</span><span class="p">[</span><span class="nx">keyB</span><span class="p">])</span>   <span class="c1">// 输出 valueB</span>
+</code></pre></div></div>
+
+<p>object3[keyA] 和 object3[keyB]<code class="language-plaintext highlighter-rouge"> 的值都是 valueB ，因为它们都被转换成了 </code>[object Object]`。</p>
+
+<p>对象的方法中 <code class="language-plaintext highlighter-rouge">this</code> 关键字指向函数所在的对象，ES6 增加的 <code class="language-plaintext highlighter-rouge">super</code> 关键字指向对象的原型对象。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// super</span>
+<span class="kd">const</span> <span class="nx">proto</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">foo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">foo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">world</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">find</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">proto</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">find</span><span class="p">())</span> <span class="c1">// "hello"</span>
+</code></pre></div></div>
+
+<p>扩展运算符用于对象是取出对象的所有可遍历属性，并复制到当前对象中：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">z</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span><span class="mi">4</span> <span class="p">}</span>
+<span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">z</span> <span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>  <span class="c1">// { a: 3, b: 4 }</span>
+</code></pre></div></div>
+
+<h2 id="symbol">Symbol</h2>
+
+<p>Symbol 是 ES6 引入的新的原始类型，用 <code class="language-plaintext highlighter-rouge">Symbol()</code> 函数生成的唯一字符串。</p>
+
+<p>无论 Symbol() 函数的输入参数是否相等，Symbol() 返回的值都是不等的，因此用 Symbol 做标志符，确保不会同名。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">s1</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">s1</span> <span class="o">===</span> <span class="nx">s2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">equal</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">not equal</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// 输出 not equal</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Symbol() 的输入的参数是对 Symbol 的描述，影响字符串转换的结果：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">s3</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">this is symbol3</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s3</span><span class="p">.</span><span class="nx">description</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">s3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nx">s3</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>运行输出为：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this is symbol3
+symbol
+Symbol(this is symbol3)
+</code></pre></div></div>
+
+<h2 id="class">Class</h2>
+
+<p>ES6 增加了 Class 语法糖，constructor() 是类的默认方法，用 new 生成对象的时候调用：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Point</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">toString</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">, </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>运行输出如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Point</span> <span class="p">{</span> <span class="nl">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>在类内部可以用 <code class="language-plaintext highlighter-rouge">get</code> 和 <code class="language-plaintext highlighter-rouge">set</code> 设置属性的取存方法， get 和 set 后面的函数名就是属性名，读取、设置属性时，对应的 get 和 set 方法会被调用：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">GetSet</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(){}</span>
+  <span class="kd">get</span> <span class="nx">A</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">get for A is called</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">This is A</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">set</span> <span class="nx">A</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">set for A is called, value is %s</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">ins</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GetSet</span><span class="p">();</span>
+<span class="nx">ins</span><span class="p">.</span><span class="nx">A</span>               <span class="c1">// get A() 被调用</span>
+<span class="nx">ins</span><span class="p">.</span><span class="nx">A</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">abc</span><span class="dl">"</span>       <span class="c1">// set A() 被调用</span>
+</code></pre></div></div>
+
+<p>运行输出如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">get</span> <span class="k">for</span> <span class="nx">A</span> <span class="nx">is</span> <span class="nx">called</span>
+<span class="kd">set</span> <span class="k">for</span> <span class="nx">A</span> <span class="nx">is</span> <span class="nx">called</span><span class="p">,</span> <span class="nx">value</span> <span class="nx">is</span> <span class="nx">abc</span>
+</code></pre></div></div>
+
+<p>类的 Generator 方法在方法名称前加上 <code class="language-plaintext highlighter-rouge">*</code>，如果没有加星号，在方法中使用 yield 会被报错：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Iter <span class="o">{</span>
+  constructor<span class="o">(</span>num<span class="o">){</span>
+    this.num <span class="o">=</span> num<span class="p">;</span>
+  <span class="o">}</span>
+  <span class="k">*</span> next<span class="o">()</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nb">let </span>i <span class="o">=</span> 0<span class="p">;</span> i &lt; this.num <span class="p">;</span> i++<span class="o">)</span> <span class="o">{</span>
+      yield i<span class="p">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+ins3 <span class="o">=</span> new Iter<span class="o">(</span>4<span class="o">)</span>
+console.log<span class="o">(</span>ins3.next<span class="o">())</span>
+<span class="k">for</span> <span class="o">(</span><span class="nb">let </span>x of ins3.next<span class="o">())</span> <span class="o">{</span>
+  console.log<span class="o">(</span>x<span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>方法名前加上 <code class="language-plaintext highlighter-rouge">static</code> ，该方法成为类的静态方法，该方法不被类的实例继承，而是直接用类名调用，静态方法中的 this 指向的类不是实例。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//类的静态方法</span>
+<span class="kd">class</span> <span class="nx">Static</span> <span class="p">{</span>
+  <span class="kd">constructor</span> <span class="p">(){}</span>
+  <span class="kd">static</span> <span class="nx">staticFunc</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">Static</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">ins4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Static</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Static</span><span class="p">.</span><span class="nx">staticFunc</span><span class="p">())</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ins4</span><span class="p">.</span><span class="nx">staticFunc</span><span class="p">())</span>   <span class="c1">//报错: TypeError: ins4.staticFunc is not a function</span>
+</code></pre></div></div>
+
+<p>类可以继承，使用 <code class="language-plaintext highlighter-rouge">extends</code> 关键字，父类的静态方法被子类继承，子类可以覆盖父类的静态方法，并用 super 调用父类的静态方法：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 类的继承</span>
+<span class="kd">class</span> <span class="nx">Father</span> <span class="p">{</span>
+  <span class="kd">constructor</span> <span class="p">(){}</span>
+  <span class="kd">static</span> <span class="nx">classMethod1</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">Father class method 1</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">static</span> <span class="nx">classMethod2</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">Father class method 2</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Child</span> <span class="kd">extends</span> <span class="nx">Father</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(){</span>
+    <span class="k">super</span><span class="p">()</span>       <span class="c1">// 子类的构造函数必须调用 super()</span>
+  <span class="p">}</span>
+  <span class="kd">static</span> <span class="nx">classMethod2</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nx">classMethod2</span><span class="p">()</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">, Child class method 2</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Child</span><span class="p">.</span><span class="nx">classMethod1</span><span class="p">())</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Child</span><span class="p">.</span><span class="nx">classMethod2</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>运行输出如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Father</span> <span class="kd">class</span> <span class="nx">method</span> <span class="mi">1</span>
+<span class="nx">Father</span> <span class="kd">class</span> <span class="nx">method</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">Child</span> <span class="kd">class</span> <span class="nx">method</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<p>属性既可以在 constructor() 中用 this 设置，也可以直接在类定义的最上方定义，加上 static 关键字的属性是类的属性：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 类的属性</span>
+<span class="kd">class</span> <span class="nx">Page</span><span class="p">{</span>
+  <span class="kd">static</span> <span class="nx">classAttr</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">This is class Page</span><span class="dl">'</span>
+  <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">lijiaocn</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">title</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">title</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">ins5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Page</span><span class="p">(</span><span class="dl">'</span><span class="s1">First Page</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ins5</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Page</span><span class="p">.</span><span class="nx">classAttr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>运行输出如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Page</span> <span class="p">{</span> <span class="nl">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lijiaocn</span><span class="dl">'</span><span class="p">,</span> <span class="nx">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">First Page</span><span class="dl">'</span> <span class="p">}</span>
+<span class="nx">This</span> <span class="nx">is</span> <span class="kd">class</span> <span class="nx">Page</span>
+</code></pre></div></div>
+
+<p>ES6 的类不支持私有方法和属性。</p>
+
+<h2 id="顶层对象">顶层对象</h2>
+
+<p>JS 中存在顶层对象，在浏览器中顶层对象名称是 window，在 node 中顶层对象名称是 global。在 ES5 以及之前，顶层对象的属性就是全局变量，ES6 改变了这一点，开始将顶层对象与全局变量分离。</p>
+
+<p>为了保持兼容，ES6 中：</p>
+
+<ol>
+  <li>var 和 function 声明的全局变量，依旧是顶层对象的属性；</li>
+  <li>let、const、class 声明的全局变量，不是顶层对象的属性。</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">在 node 12 中观察不到该现象，此处存疑！</code></p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://www.lijiaocn.com" title="李佶澳的博客">李佶澳的博客</a></li>
+</ol>
+
+
+</div>
+
+<div class="copyright">
+    <!--div style="text-align:center;">
+    
+    <img style="max-width: 250px" src="/blog/img/money.jpg"/>
+    <p><a style="text-align:center;color:red" href="/blog/img/money.jpg">微信公众号</a></p>
+    
+</div-->
+
+
+<div style="text-align:center">
+    <p style="color:gray"><span>作者:李佶澳</span>&nbsp;&nbsp;<span>更新时间:2019-06-23T21:04:26+0800</span></p>
+
+</div>
+
+
+<!-- 底部二维码并列 -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1398175214"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->
+
+</div>
+
+<div style="text-align:center">
+  <p>
+
+<span class="glyphicon glyphicon-folder-open" style="color:lightgray"></span>
+
+
+<span>&nbsp<a href="/blog/c/tutorial/">系列教程</a>&nbsp</span>
+
+
+
+<span class="glyphicon glyphicon-tag" style="color:lightgray"></span>
+<span><a href="/blog/t/all/#语法">语法</a>&nbsp</span>
+
+</p>
+
+</div>
+
+<div>
+  
+<div class="prevnext">
+    <div style="text-align:left">
+        
+        <span>上一篇：</span><span><a href="/blog/tutorial/2019/06/23/javascript-06-async/">JavaScript/ES6 快速上手教程（六）：异步编程</a></span>
+        
+    </div>
+
+    <div style="text-align:right">
+      
+      <span>下一篇：</span><span><a href="/blog/tutorial/2019/06/22/javascript-04-node-usage/">JavaScript/ES6 快速上手教程（四）：Node.js用法</a></span>
+       
+    </div>
+</div>
+
+
+</div>
+
+            </article>
+
+
+            
+            <aside class="rsidebar">
+                <div class="rsidebar-content">
+  <div class="searchbar ">
+    <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+    <div class="row">
+      <div class="">
+        <input name="sitesearch" type="hidden" value="lijiaocn.com">
+        <input autocomplete="on" class="form-controls search" name="q" placeholder="站内搜索" required="required"  type="text">
+        <button class="button" type="submit">Google</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!--div class="">
+    <h4 style="color:brown">专属公众号（微信扫一扫）</h4>
+    <img src="/blog/img/self.jpg"></img>
+  </div-->
+
+  <div class="">
+    <a href="https://www.lijiaocn.com/shop"><h3>每日红包</h3></a>
+    <a target="_blank" style="" href="https://www.amazon.cn?tag=znrio-23">亚马逊图书</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WYppWas1DZpVXZmcDOwMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiRyUSbvNmLzYTMuU3b5ZkMlYkMlE0MlAHd0hWP0Zibj9">网易严选</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?site_id=224482&lid=4193&aid=61&euid=lijiaocn&t=http%3A%2F%2Fwww.360buy.com%2F">京东</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=lAHd0hWP0Zibj9WYppWas1DZpVXZmQDOzMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiJpFWbvVHZfB3ckR0Ml02byZmeGNTJGJTJt92Yu8Wd69WY6ZkMlYkMlE0M">造作</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=m0DZpVXZmITO5MTPklWYmAjMzUjMy0DZp9VZ0l2cm02bj5CdyF2d55yd3dnRyUiRyUSQzUycwRHdo1Dd" >艺网</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ibj9WYppWas1DZpVXZmMDMxITPklWYmAjMzUjMy0DZp9VZ0l2cmYiJuNmLt92YukHbu9WZz9mcuc3d3ZkMlYkMlE0MlAHd0hWP0Z">roseonly</a>
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=o1DdmYXYu1DZpVXZmIDO5cTPklWYmITMyUzM30DZp9VZ0l2cmYiJGJTJuNmLt92YuMXYklGZh5yd3dnRyUiRyUSQzUycwRHd&dm_fid=16055">阿迪达斯</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Hd0hWP0Zidh5WPklWdlZyN4MTPklWYmUTMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUSbvNmLsxWYtZnL3d3dGJTJGJTJBNTJzB&dm_fid=16055">华为</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=0RHa9QnJyFmYlRWaz1DZpVXZmATNwkTPklWYmMDMyUzM30DZp9VZ0l2cmYkMlA3boNnRyUibjZkMl02bj5icv52bolGauc3d3ZkMlYkMlE0MlMHc&dm_fid=16055">荣耀</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=j9WYppWas1DZpVXZmczM3ETPklWYmAjMzUjMy0DZp9VZ0l2cmYiJGJTJt92YuEGbvF2auc3d3ZkMlYkMlE0MlAHd0hWP0Zib">考拉海购</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Ha9QnJ2Fmb9QWa1VmJ0YTPklWYmYDMyUzM30DZp9VZ0l2cmYiJGJTJt92YucmbhR2ZuFGZuc3d3ZkMlYkMlE0MlMHc0R&dm_fid=16055">当当</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ukWepFXauAXa2ZkMlYkMlE0MlMHc0RHa9QnJ2Fmb9QWa1VmJ5UDN0ETPklWYmkDMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUyclxWYzRnbp9maGJTJu9WauVnRyUSe0lmdpR3YhZkMlAVSWVDbtRHaGJTJt92Y&dm_fid=16055">爱奇艺联名会员（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WaqlGb9QWa1VmJ0ITMwETPklWYmEDM5kzM30DZp9VZ0l2cm02bj5ibhVHdpVWbukmRyUiRyUSQzUycwRHdo1Ddm42YvF&dm_fid=16055">美团外卖红包（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=2Fmb9QWa1VmJ3ITMwETPklWYmADMyUzM30DZp9VZ0l2cmYiJt92Yu4WY1RXal1mLpZkMlYkMlE0MlMHc0RHa9QnJ&dm_fid=16052">美团闪购红包（手机打开）</a>&nbsp;
+  </div>
+
+  <div class="">
+    <img src="/blog/img/money.jpg"></img>
+  </div>
+  <!--div class="">
+    <h4 style="color:brown">淘宝天猫优惠券（微信扫一扫）</h4>
+    <img src="https://www.lijiaocn.com/img/tuanhaohuo.jpg"></img>
+  </div-->
+
+  <div class="">
+    <h5 style="color:gray">赞助商广告</h5>
+  <!-- 右侧边栏广告 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2723439605"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告2 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4426808013"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告3 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="3551466770"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+</div>
+
+            </aside>
+            
+        </div>
+        <div class="main-footer">
+            <div class="page_bottom_ad">
+                <!-- 底部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4061827929"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+
+            <div class="related">
+                <!-- Google 匹配内容页面-->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-format="autorelaxed"
+   data-ad-client="ca-pub-8176866190626448"
+   data-ad-slot="6443696990"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+    <p>
+<span></span>
+<span>Copyright @2011-2019 All rights reserved.</span>
+</p>
+
+<p>
+<span>友情链接:</span>&nbsp;
+<span><a style="color:white"  href="/note/">小鸟笔记</a></span>&nbsp;
+<span><a style="color:white"  href="/soft/">软件手册</a></span>&nbsp;
+<span><a style="color:white"  href="/prog/">编程手册</a></span>&nbsp;
+<span><a style="color:white"  href="/oper/">运营手册</a></span>&nbsp;
+<span><a style="color:white"  href="/movie/">爱马影视</a></span>&nbsp;
+<span><a style="color:white"  href="/class/">网络课程</a></span>&nbsp;
+<span><a style="color:white"  href="/skill/">奇技淫巧</a></span>&nbsp;
+<span><a style="color:white"  href="/tutorial/">课程文档</a></span>&nbsp;
+<span><a style="color:white"  href="/wechat/news/">精选文章</a></span>&nbsp;
+<span><a style="color:white"  href="https://www.baidu.com/">百度搜索</a></span>
+<span><a style="color:white"  href="https://www.google.com/">谷歌搜索</a></span>
+</p>
+
+    </footer>
+
+    <script src="/blog/assets/js/jquery-1.24.4.min.js"></script>
+    <script src="/blog/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/blog/assets/js/body.js"></script>
+</body>
+</html>

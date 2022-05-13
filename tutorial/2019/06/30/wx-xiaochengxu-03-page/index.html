@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="博客模版：小程序使用的是 MVVM 开发模式，页面文件是模版，{{ 和 }}包裹可以用 js 设置值的变量（即数据绑定），xss是独立样式表，js提供交互逻辑">
+<meta name="keywords" content="博客模版,微信小程序,页面设计,wxml文件语法,wxssw文件语法,小程序页面组件">
+<meta name="author" content="李佶澳">
+
+<title>微信小程序开发快速入门教程（三）：页面文件 wxml 博客模版</title>
+
+<link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap.min.css">
+<!--link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap-theme.min.css"-->
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/default.css">
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/highlight.css">
+<link rel="alternate" type="application/rss+xml" title="博客模版" href="/feed.xml">
+<link rel="icon" href="/favicon.ico">
+
+<style type="text/css">
+body{
+	background-image: url(/blog/img/bg.png);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+</style>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "http://localhost:4001/blog/img/logo-112x112.jpg",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "http://localhost:4001"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "http://localhost:4001",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "博客模版",                    //组织或个人名称
+      "url": "http://localhost:4001",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          
+          
+          "name": "系列教程",
+          "item": "http://localhost:4001/blog/c/tutorial/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "微信小程序",
+          "item": "http://localhost:4001/blog/t/all#微信小程序"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "微信小程序开发快速入门教程（三）：页面文件 wxml",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "http://localhost:4001/blog/img/cover/1x1/wxxiaochengxu.003.jpg",  //至少：600*600 = 360 000
+        "http://localhost:4001/blog/img/cover/4x3/wxxiaochengxu.003.jpg",  //至少：800*600 = 480 000
+        "http://localhost:4001/blog/img/cover/16x9/wxxiaochengxu.003.jpg"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "李佶澳"    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "博客模版",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "http://localhost:4001/blog/img/logo-112x112.jpg" //发布机构Logo,遵循
+         }
+      },
+      "description": "小程序使用的是 MVVM 开发模式，页面文件是模版，{{ 和 }}包裹可以用 js 设置值的变量（即数据绑定），xss是独立样式表，js提供交互逻辑",
+      "mainEntityOfPage": "http://localhost:4001/blog/tutorial/2019/06/30/wx-xiaochengxu-03-page/",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+
+
+
+<!--Google ads 全局依赖代码 -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics 全局依赖代码-->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<!-- 需要尽早执行的js代码 -->
+<script async="async" src="/blog/assets/js/head.js" ></script>
+
+</head>
+<body>
+    <nav class="topnav">
+        <!-- display sm md lg -->
+<div class="container" >
+  <div class="navbar-header">
+    <button id="navb" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar" style="color:black"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand hidden-sm">
+      <span><a href="http://localhost:4001/blog/" title="主页">博客模版</a></span>
+      <span class="glyphicon glyphicon-hand-right" style="margin-left:15px"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="categories">
+    <ul class="nav navbar-nav">
+       
+      <li><a href="/blog/c/tutorial/">系列教程</a></li>
+       
+      <li><a href="/blog/c/book/">读书笔记</a></li>
+       
+      <li><a href="/blog/c/know/">认知感悟</a></li>
+       
+      <li><a href="/blog/c/money/">金钱管理</a></li>
+       
+      <li><a href="/blog/c/policy/">政策政务</a></li>
+       
+      <li><a href="/blog/c/skill/">软件技巧</a></li>
+       
+      <li><a href="/blog/c/share/">共享资源</a></li>
+      
+      <li><a href="/blog/t/all/">标签</a></li>
+    </ul>
+  </div>
+</div>
+
+    </nav>
+
+    <section class="banner">
+        
+    </section>
+
+    <section class="main">
+        <div class="main-header">
+            <div class="title">
+                <h1>微信小程序开发快速入门教程（三）：页面文件 wxml</h1>
+            </div>
+
+            <div class="pageheader">
+                <p>
+<span>
+<a target="_blank" style="color:red;font-weight:bold" href="https://www.lijiaocn.com/shop">每日红包&精选购物</a>
+</span>
+</p>
+
+
+            </div>
+
+            <div class="top_ad">
+                <!-- 顶部条幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1000173679"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                <br>
+            </div>
+
+            <div class="top_social">
+                
+            </div>
+        </div>
+
+        <div class="main-body">
+            <article class="content">
+                
+<div style="text-align:center">
+  <img src="/blog/img/cover/16x9/wxxiaochengxu.003.jpg" alt="微信小程序开发快速入门教程（三）：页面文件 wxml"/>
+</div>
+
+
+<div>
+  <h2 id="本篇目录">本篇目录</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#本篇目录" id="markdown-toc-本篇目录">本篇目录</a></li>
+  <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
+  <li><a href="#wxml-文件" id="markdown-toc-wxml-文件">wxml 文件</a>    <ul>
+      <li><a href="#页面布局" id="markdown-toc-页面布局">页面布局</a></li>
+      <li><a href="#数据绑定" id="markdown-toc-数据绑定">数据绑定</a></li>
+      <li><a href="#列表渲染-wxfor" id="markdown-toc-列表渲染-wxfor">列表渲染 wx:for</a></li>
+      <li><a href="#条件渲染-wxifwxelifwxelse" id="markdown-toc-条件渲染-wxifwxelifwxelse">条件渲染 wx:if、wx:elif、wx:else</a></li>
+      <li><a href="#子模版" id="markdown-toc-子模版">子模版</a></li>
+    </ul>
+  </li>
+  <li><a href="#用于包裹视图组件的-block" id="markdown-toc-用于包裹视图组件的-block">用于包裹视图组件的 block</a></li>
+  <li><a href="#小程序页面组件" id="markdown-toc-小程序页面组件">小程序页面组件</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="说明">说明</h2>
+
+<p>小程序使用的是 MVVM 开发模式，wxml 页面文件是<code class="language-plaintext highlighter-rouge">模版</code>文件，wxss 文件是独立样式表，js 文件提供交互逻辑。</p>
+
+<h2 id="wxml-文件">wxml 文件</h2>
+
+<p>wxml 文件类似于 html 文件，但使用的微信小程序定义的组件标签，不是标准的 html 标签，小程序的组件数量较少，在 <a href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件页面</a> 可以看到所有支持的组件。</p>
+
+<h3 id="页面布局">页面布局</h3>
+
+<p>视图容器是包含其它组件的组件，有点类似于 html 中的 div，用视图容器安排小程序页面的布局。</p>
+
+<p>示例代码中小程序首页 pages/index/index.wxml 的内容如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--index.wxml--&gt;</span>
+<span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- 用户 openid --&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"userinfo"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> 
+      <span class="na">open-type=</span><span class="s">"getUserInfo"</span> 
+      <span class="na">bindgetuserinfo=</span><span class="s">"onGetUserInfo"</span>
+      <span class="na">class=</span><span class="s">"userinfo-avatar"</span>
+      <span class="na">style=</span><span class="s">"background-image: url()"</span>
+    <span class="nt">&gt;&lt;/button&gt;</span>
+    <span class="nt">&lt;view&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"userinfo-nickname"</span> <span class="na">bindtap=</span><span class="s">"onGetOpenid"</span><span class="nt">&gt;</span>点击获取 openid<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/view&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+
+
+  <span class="c">&lt;!-- 上传图片 --&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader-text"</span> <span class="na">bindtap=</span><span class="s">"doUpload"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text&gt;</span>上传图片<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/view&gt;</span>
+    <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader-container"</span> <span class="na">wx:if=</span><span class="s">""</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;image</span> <span class="na">class=</span><span class="s">"uploader-image"</span> <span class="na">src=</span><span class="s">""</span> <span class="na">mode=</span><span class="s">"aspectFit"</span> <span class="na">bindtap=</span><span class="s">"previewImg"</span><span class="nt">&gt;&lt;/image&gt;</span>
+    <span class="nt">&lt;/view&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+
+
+  <span class="c">&lt;!-- 操作数据库 --&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;navigator</span> <span class="na">url=</span><span class="s">"../databaseGuide/databaseGuide"</span> <span class="na">open-type=</span><span class="s">"navigate"</span> <span class="na">class=</span><span class="s">"uploader-text"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text&gt;</span>前端操作数据库<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/navigator&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+
+  <span class="c">&lt;!-- 新建云函数 --&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;navigator</span> <span class="na">url=</span><span class="s">"../addFunction/addFunction"</span> <span class="na">open-type=</span><span class="s">"navigate"</span> <span class="na">class=</span><span class="s">"uploader-text"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text&gt;</span>快速新建云函数<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/navigator&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+
+  <span class="c">&lt;!-- 云调用 --&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"uploader"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;navigator</span> <span class="na">url=</span><span class="s">"../openapi/openapi"</span> <span class="na">open-type=</span><span class="s">"navigate"</span> <span class="na">class=</span><span class="s">"uploader-text"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text&gt;</span>云调用<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;/navigator&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+
+
+<span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<p>呈现效果如下：</p>
+
+<p><img src="/blog/img/article/xiaochengxu-page-1.png" alt="微信小程序页面效果" /></p>
+
+<h3 id="数据绑定">数据绑定</h3>
+
+<p>小程序使用的是 MVVM 开发模式，页面文件实质上是<code class="language-plaintext highlighter-rouge">模版</code>文件，页面文件中用 {{ 和 }} 包裹可以用 js 设置值的变量（即数据绑定），如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view&gt;</span> {{ message }} <span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<p>然后可以在对应的 js 文件中设置变量的值，js 文件的格式和用途在下一节：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Page</span><span class="p">({</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Hello MINA!</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>在组件的属性中也可以使用数据绑定：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">id=</span><span class="s">"item-{{id}}"</span><span class="nt">&gt;</span> <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;checkbox</span> <span class="na">checked=</span><span class="s">"{{false}}"</span><span class="nt">&gt;</span> <span class="nt">&lt;/checkbox&gt;</span>
+</code></pre></div></div>
+
+<p>支持 if 控制显示，需要使用 wx:if 属性：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">wx:if=</span><span class="s">"{{condition}}"</span><span class="nt">&gt;</span> <span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<p>可以使用运算符：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">hidden=</span><span class="s">"{{flag ? true : false}}"</span><span class="nt">&gt;</span> Hidden <span class="nt">&lt;/view&gt;</span>
+
+<span class="nt">&lt;view&gt;</span> {{a + b}} + {{c}} + d <span class="nt">&lt;/view&gt;</span>
+
+<span class="nt">&lt;view&gt;</span>{{"hello" + name}}<span class="nt">&lt;/view&gt;</span>
+
+<span class="nt">&lt;view&gt;</span>{{object.key}} {{array[0]}}<span class="nt">&lt;/view&gt;</span>
+
+<span class="c">&lt;!-- 数组遍历 --&gt;</span>
+<span class="nt">&lt;view</span> <span class="na">wx:for=</span><span class="s">"{{[zero, 1, 2, 3, 4]}}"</span><span class="nt">&gt;</span> {{item}} <span class="nt">&lt;/view&gt;</span>
+
+<span class="c">&lt;!-- 用组合成一个新的对象，key 分别为 for、bar，value 分别为 a、b 绑定的值 --&gt;</span>
+<span class="nt">&lt;template</span> <span class="na">is=</span><span class="s">"objectCombine"</span> <span class="na">data=</span><span class="s">"{{for: a, bar: b}}"</span><span class="nt">&gt;&lt;/template&gt;</span>
+
+<span class="c">&lt;!-- 将 obj1 和 obj2 绑定的 object 变量展开后，组合成一个新的 object 变量 --&gt;</span>
+<span class="nt">&lt;template</span> <span class="na">is=</span><span class="s">"objectCombine"</span> <span class="na">data=</span><span class="s">"{{...obj1, ...obj2, e: 5}}"</span><span class="nt">&gt;&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<h3 id="列表渲染-wxfor">列表渲染 wx:for</h3>
+
+<p>wx:for 遍历数组，进行列表渲染，当前列表项的下标变量默认为 index，当前列表项为 item：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">wx:for=</span><span class="s">"{{array}}"</span><span class="nt">&gt;</span>
+  {{index}}: {{item.message}}
+<span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<p>可以用 wx:for-index 和 wx:for-item 分别修改下标变量和当前列表项变量的名称：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">wx:for=</span><span class="s">"{{array}}"</span> <span class="na">wx:for-index=</span><span class="s">"idx"</span> <span class="na">wx:for-item=</span><span class="s">"itemName"</span><span class="nt">&gt;</span>
+  {{idx}}: {{itemName.message}}
+<span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<p>如果列表是动态变化的，需要用 wx:key 指定每个列表项中唯一标识属性：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;switch</span> <span class="na">wx:for=</span><span class="s">"{{objectArray}}"</span> <span class="na">wx:key=</span><span class="s">"unique"</span> <span class="na">style=</span><span class="s">"display: block;"</span><span class="nt">&gt;</span> {{item.id}} <span class="nt">&lt;/switch&gt;</span>
+
+<span class="nt">&lt;switch</span> <span class="na">wx:for=</span><span class="s">"{{numberArray}}"</span> <span class="na">wx:key=</span><span class="s">"*this"</span> <span class="na">style=</span><span class="s">"display: block;"</span><span class="nt">&gt;</span> {{item}} <span class="nt">&lt;/switch&gt;</span>
+</code></pre></div></div>
+
+<p>unique 是每个列表项都不同的属性，如果列表项本身就是唯一的字符串或者数字，wx:key 可以是 <code class="language-plaintext highlighter-rouge">*this</code>：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">objectArray</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_5</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_4</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_3</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_2</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_1</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="dl">'</span><span class="s1">unique_0</span><span class="dl">'</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="nx">numberArray</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+  <span class="p">},</span>
+</code></pre></div></div>
+
+<h3 id="条件渲染-wxifwxelifwxelse">条件渲染 wx:if、wx:elif、wx:else</h3>
+
+<p>wx:if 用来控制组件是否显示，相比 hidden 属性，wx:if 的切换消耗更高，适合运行时不经常改变的组件：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;view</span> <span class="na">wx:if=</span><span class="s">"{{length &gt; 5}}"</span><span class="nt">&gt;</span> 1 <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;view</span> <span class="na">wx:elif=</span><span class="s">"{{length &gt; 2}}"</span><span class="nt">&gt;</span> 2 <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;view</span> <span class="na">wx:else</span><span class="nt">&gt;</span> 3 <span class="nt">&lt;/view&gt;</span>
+</code></pre></div></div>
+
+<h3 id="子模版">子模版</h3>
+
+<p>可以把会在多个页面中用到的内容做成一个单独的子模版文件，子模版用 &lt;template&gt; 定义：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">"msgItem"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;view&gt;</span>
+    <span class="nt">&lt;text&gt;</span> {{index}}: {{msg}} <span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;text&gt;</span> Time: {{time}} <span class="nt">&lt;/text&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<p>模版文件用 import 或者 include 引用，import 只导入目标文件中定义的 template，include 则同时将目标文件中 template 和 wxs 之外的内容完整复制到当前文件中：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;import</span> <span class="na">src=</span><span class="s">"item.wxml"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">"header.wxml"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>使用模版文件中的模版时，用 template 标签，用 is 属性指定要使用的模版，用 data 指定模版中的变量的值，例如下面引用 item.wxml 中的 item 模版：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;import</span> <span class="na">src=</span><span class="s">"item.wxml"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;template</span> <span class="na">is=</span><span class="s">"item"</span> <span class="na">data=</span><span class="s">"{{text: 'forbar'}}"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>item 模版的定义如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- item.wxml --&gt;</span>
+<span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;text&gt;</span>{{text}}<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<h2 id="用于包裹视图组件的-block">用于包裹视图组件的 block</h2>
+
+<p>如果 wx:for、wx:if 要渲染视图容器，可以用 block 标签包裹，block 标签不是一个组件，只是一个用于包装的元素，不会被渲染，并且只接受 <code class="language-plaintext highlighter-rouge">wx:..</code> 控制属性。</p>
+
+<p>block 和 wx:if：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;block</span> <span class="na">wx:if=</span><span class="s">"{{true}}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;view&gt;</span> view1 <span class="nt">&lt;/view&gt;</span>
+  <span class="nt">&lt;view&gt;</span> view2 <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;/block&gt;</span>
+</code></pre></div></div>
+
+<p>block 和 wx:for：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;block</span> <span class="na">wx:for=</span><span class="s">"{{[1, 2, 3]}}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;view&gt;</span> {{index}}: <span class="nt">&lt;/view&gt;</span>
+  <span class="nt">&lt;view&gt;</span> {{item}} <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;/block&gt;</span>
+</code></pre></div></div>
+
+<h2 id="小程序页面组件">小程序页面组件</h2>
+
+<p>小程序页面组件见：<a href="https://www.lijiaocn.com/tutorial/xiaochengxu/2019/06/30/wx-xiaochengxu-06-api/">微信小程序开发快速入门教程（六）：组件属性与 API</a>。</p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://www.lijiaocn.com" title="李佶澳的博客">李佶澳的博客</a></li>
+</ol>
+
+
+</div>
+
+<div class="copyright">
+    <!--div style="text-align:center;">
+    
+    <img style="max-width: 250px" src="/blog/img/money.jpg"/>
+    <p><a style="text-align:center;color:red" href="/blog/img/money.jpg">微信公众号</a></p>
+    
+</div-->
+
+
+<div style="text-align:center">
+    <p style="color:gray"><span>作者:李佶澳</span>&nbsp;&nbsp;<span>更新时间:2019-06-30T16:26:59+0800</span></p>
+
+</div>
+
+
+<!-- 底部二维码并列 -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1398175214"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->
+
+</div>
+
+<div style="text-align:center">
+  <p>
+
+<span class="glyphicon glyphicon-folder-open" style="color:lightgray"></span>
+
+
+<span>&nbsp<a href="/blog/c/tutorial/">系列教程</a>&nbsp</span>
+
+
+
+<span class="glyphicon glyphicon-tag" style="color:lightgray"></span>
+<span><a href="/blog/t/all/#微信小程序">微信小程序</a>&nbsp</span>
+
+</p>
+
+</div>
+
+<div>
+  
+<div class="prevnext">
+    <div style="text-align:left">
+        
+        <span>上一篇：</span><span><a href="/blog/tutorial/2019/06/30/wx-xiaochengxu-04-wxss/">微信小程序开发快速入门教程（四）：页面文件 wxss</a></span>
+        
+    </div>
+
+    <div style="text-align:right">
+      
+      <span>下一篇：</span><span><a href="/blog/tutorial/2019/06/29/wx-xiaochengxu-02-project/">微信小程序开发快速入门教程（二）：项目结构</a></span>
+       
+    </div>
+</div>
+
+
+</div>
+
+            </article>
+
+
+            
+            <aside class="rsidebar">
+                <div class="rsidebar-content">
+  <div class="searchbar ">
+    <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+    <div class="row">
+      <div class="">
+        <input name="sitesearch" type="hidden" value="lijiaocn.com">
+        <input autocomplete="on" class="form-controls search" name="q" placeholder="站内搜索" required="required"  type="text">
+        <button class="button" type="submit">Google</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!--div class="">
+    <h4 style="color:brown">专属公众号（微信扫一扫）</h4>
+    <img src="/blog/img/self.jpg"></img>
+  </div-->
+
+  <div class="">
+    <a href="https://www.lijiaocn.com/shop"><h3>每日红包</h3></a>
+    <a target="_blank" style="" href="https://www.amazon.cn?tag=znrio-23">亚马逊图书</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WYppWas1DZpVXZmcDOwMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiRyUSbvNmLzYTMuU3b5ZkMlYkMlE0MlAHd0hWP0Zibj9">网易严选</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?site_id=224482&lid=4193&aid=61&euid=lijiaocn&t=http%3A%2F%2Fwww.360buy.com%2F">京东</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=lAHd0hWP0Zibj9WYppWas1DZpVXZmQDOzMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiJpFWbvVHZfB3ckR0Ml02byZmeGNTJGJTJt92Yu8Wd69WY6ZkMlYkMlE0M">造作</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=m0DZpVXZmITO5MTPklWYmAjMzUjMy0DZp9VZ0l2cm02bj5CdyF2d55yd3dnRyUiRyUSQzUycwRHdo1Dd" >艺网</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ibj9WYppWas1DZpVXZmMDMxITPklWYmAjMzUjMy0DZp9VZ0l2cmYiJuNmLt92YukHbu9WZz9mcuc3d3ZkMlYkMlE0MlAHd0hWP0Z">roseonly</a>
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=o1DdmYXYu1DZpVXZmIDO5cTPklWYmITMyUzM30DZp9VZ0l2cmYiJGJTJuNmLt92YuMXYklGZh5yd3dnRyUiRyUSQzUycwRHd&dm_fid=16055">阿迪达斯</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Hd0hWP0Zidh5WPklWdlZyN4MTPklWYmUTMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUSbvNmLsxWYtZnL3d3dGJTJGJTJBNTJzB&dm_fid=16055">华为</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=0RHa9QnJyFmYlRWaz1DZpVXZmATNwkTPklWYmMDMyUzM30DZp9VZ0l2cmYkMlA3boNnRyUibjZkMl02bj5icv52bolGauc3d3ZkMlYkMlE0MlMHc&dm_fid=16055">荣耀</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=j9WYppWas1DZpVXZmczM3ETPklWYmAjMzUjMy0DZp9VZ0l2cmYiJGJTJt92YuEGbvF2auc3d3ZkMlYkMlE0MlAHd0hWP0Zib">考拉海购</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Ha9QnJ2Fmb9QWa1VmJ0YTPklWYmYDMyUzM30DZp9VZ0l2cmYiJGJTJt92YucmbhR2ZuFGZuc3d3ZkMlYkMlE0MlMHc0R&dm_fid=16055">当当</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ukWepFXauAXa2ZkMlYkMlE0MlMHc0RHa9QnJ2Fmb9QWa1VmJ5UDN0ETPklWYmkDMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUyclxWYzRnbp9maGJTJu9WauVnRyUSe0lmdpR3YhZkMlAVSWVDbtRHaGJTJt92Y&dm_fid=16055">爱奇艺联名会员（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WaqlGb9QWa1VmJ0ITMwETPklWYmEDM5kzM30DZp9VZ0l2cm02bj5ibhVHdpVWbukmRyUiRyUSQzUycwRHdo1Ddm42YvF&dm_fid=16055">美团外卖红包（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=2Fmb9QWa1VmJ3ITMwETPklWYmADMyUzM30DZp9VZ0l2cmYiJt92Yu4WY1RXal1mLpZkMlYkMlE0MlMHc0RHa9QnJ&dm_fid=16052">美团闪购红包（手机打开）</a>&nbsp;
+  </div>
+
+  <div class="">
+    <img src="/blog/img/money.jpg"></img>
+  </div>
+  <!--div class="">
+    <h4 style="color:brown">淘宝天猫优惠券（微信扫一扫）</h4>
+    <img src="https://www.lijiaocn.com/img/tuanhaohuo.jpg"></img>
+  </div-->
+
+  <div class="">
+    <h5 style="color:gray">赞助商广告</h5>
+  <!-- 右侧边栏广告 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2723439605"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告2 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4426808013"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告3 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="3551466770"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+</div>
+
+            </aside>
+            
+        </div>
+        <div class="main-footer">
+            <div class="page_bottom_ad">
+                <!-- 底部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4061827929"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+
+            <div class="related">
+                <!-- Google 匹配内容页面-->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-format="autorelaxed"
+   data-ad-client="ca-pub-8176866190626448"
+   data-ad-slot="6443696990"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+    <p>
+<span></span>
+<span>Copyright @2011-2019 All rights reserved.</span>
+</p>
+
+<p>
+<span>友情链接:</span>&nbsp;
+<span><a style="color:white"  href="/note/">小鸟笔记</a></span>&nbsp;
+<span><a style="color:white"  href="/soft/">软件手册</a></span>&nbsp;
+<span><a style="color:white"  href="/prog/">编程手册</a></span>&nbsp;
+<span><a style="color:white"  href="/oper/">运营手册</a></span>&nbsp;
+<span><a style="color:white"  href="/movie/">爱马影视</a></span>&nbsp;
+<span><a style="color:white"  href="/class/">网络课程</a></span>&nbsp;
+<span><a style="color:white"  href="/skill/">奇技淫巧</a></span>&nbsp;
+<span><a style="color:white"  href="/tutorial/">课程文档</a></span>&nbsp;
+<span><a style="color:white"  href="/wechat/news/">精选文章</a></span>&nbsp;
+<span><a style="color:white"  href="https://www.baidu.com/">百度搜索</a></span>
+<span><a style="color:white"  href="https://www.google.com/">谷歌搜索</a></span>
+</p>
+
+    </footer>
+
+    <script src="/blog/assets/js/jquery-1.24.4.min.js"></script>
+    <script src="/blog/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/blog/assets/js/body.js"></script>
+</body>
+</html>

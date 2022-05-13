@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="博客模版：在使用该模版之前，需要将_config.yml以及模版中的信息设置自己的站点信息">
+<meta name="keywords" content="博客模版,使用手册">
+<meta name="author" content="李佶澳">
+
+<title>第一步：配置网站信息 博客模版</title>
+
+<link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap.min.css">
+<!--link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap-theme.min.css"-->
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/default.css">
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/highlight.css">
+<link rel="alternate" type="application/rss+xml" title="博客模版" href="/feed.xml">
+<link rel="icon" href="/favicon.ico">
+
+<style type="text/css">
+body{
+	background-image: url(/blog/img/bg.png);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+</style>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "http://localhost:4001/blog/img/logo-112x112.jpg",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "http://localhost:4001"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "http://localhost:4001",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "博客模版",                    //组织或个人名称
+      "url": "http://localhost:4001",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          
+          
+          "name": "系列教程",
+          "item": "http://localhost:4001/blog/c/tutorial/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "使用手册",
+          "item": "http://localhost:4001/blog/t/all#使用手册"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "第一步：配置网站信息",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "http://localhost:4001/blog/img/cover/1x1/双飞.jpg",  //至少：600*600 = 360 000
+        "http://localhost:4001/blog/img/cover/4x3/双飞.jpg",  //至少：800*600 = 480 000
+        "http://localhost:4001/blog/img/cover/16x9/双飞.jpg"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "李佶澳"    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "博客模版",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "http://localhost:4001/blog/img/logo-112x112.jpg" //发布机构Logo,遵循
+         }
+      },
+      "description": "在使用该模版之前，需要将_config.yml以及模版中的信息设置自己的站点信息",
+      "mainEntityOfPage": "http://localhost:4001/blog/tutorial/2019/05/07/01-setting/",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+
+
+
+<!--Google ads 全局依赖代码 -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics 全局依赖代码-->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<!-- 需要尽早执行的js代码 -->
+<script async="async" src="/blog/assets/js/head.js" ></script>
+
+</head>
+<body>
+    <nav class="topnav">
+        <!-- display sm md lg -->
+<div class="container" >
+  <div class="navbar-header">
+    <button id="navb" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar" style="color:black"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand hidden-sm">
+      <span><a href="http://localhost:4001/blog/" title="主页">博客模版</a></span>
+      <span class="glyphicon glyphicon-hand-right" style="margin-left:15px"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="categories">
+    <ul class="nav navbar-nav">
+       
+      <li><a href="/blog/c/tutorial/">系列教程</a></li>
+       
+      <li><a href="/blog/c/book/">读书笔记</a></li>
+       
+      <li><a href="/blog/c/know/">认知感悟</a></li>
+       
+      <li><a href="/blog/c/money/">金钱管理</a></li>
+       
+      <li><a href="/blog/c/policy/">政策政务</a></li>
+       
+      <li><a href="/blog/c/skill/">软件技巧</a></li>
+       
+      <li><a href="/blog/c/share/">共享资源</a></li>
+      
+      <li><a href="/blog/t/all/">标签</a></li>
+    </ul>
+  </div>
+</div>
+
+    </nav>
+
+    <section class="banner">
+        
+    </section>
+
+    <section class="main">
+        <div class="main-header">
+            <div class="title">
+                <h1>第一步：配置网站信息</h1>
+            </div>
+
+            <div class="pageheader">
+                <p>
+<span>
+<a target="_blank" style="color:red;font-weight:bold" href="https://www.lijiaocn.com/shop">每日红包&精选购物</a>
+</span>
+</p>
+
+
+            </div>
+
+            <div class="top_ad">
+                <!-- 顶部条幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1000173679"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                <br>
+            </div>
+
+            <div class="top_social">
+                
+            </div>
+        </div>
+
+        <div class="main-body">
+            <article class="content">
+                
+<div style="text-align:center">
+  <img src="/blog/img/cover/16x9/双飞.jpg" alt="第一步：配置网站信息"/>
+</div>
+
+
+<div>
+  <h2 id="本篇目录">本篇目录</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#本篇目录" id="markdown-toc-本篇目录">本篇目录</a></li>
+  <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
+  <li><a href="#站点基本信息_configyml" id="markdown-toc-站点基本信息_configyml">站点基本信息：_config.yml</a></li>
+  <li><a href="#站点分类频道_datacateinfosyml" id="markdown-toc-站点分类频道_datacateinfosyml">站点分类频道：_data/cateinfos.yml</a></li>
+  <li><a href="#站点标签汇总tallhtml" id="markdown-toc-站点标签汇总tallhtml">站点标签汇总：t/all.html</a></li>
+  <li><a href="#定制网站组件_includeshtml" id="markdown-toc-定制网站组件_includeshtml">定制网站组件：_includes/*.html</a></li>
+  <li><a href="#css与js文件" id="markdown-toc-css与js文件">css与js文件</a></li>
+  <li><a href="#网站首页indexmd" id="markdown-toc-网站首页indexmd">网站首页：index.md</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="说明">说明</h2>
+
+<p>在使用该模版之前，需要对配置文件以及部分模版文件进行修改，将里面的信息替换你自己的站点信息。</p>
+
+<h2 id="站点基本信息_configyml">站点基本信息：_config.yml</h2>
+
+<p>设置网站名称，网站地址、版权信息、备案号、图片地址，如果没有可以为空：</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Jekyll静态网页模版"</span>
+<span class="na">url</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">https://www.lijiaocn.com"</span>
+<span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>  
+<span class="na">Copyright</span><span class="pi">:</span> <span class="s">Copyright @2011-2019 All rights reserved.</span>
+<span class="na">ICP-number</span><span class="pi">:</span>
+<span class="na">img</span><span class="pi">:</span>   <span class="s">/img</span>
+<span class="na">imgcdn</span><span class="pi">:</span> 
+</code></pre></div></div>
+
+<h2 id="站点分类频道_datacateinfosyml">站点分类频道：_data/cateinfos.yml</h2>
+
+<p><code class="language-plaintext highlighter-rouge">_data/cateinfos.yml</code>是站点分类频道信息，<code class="language-plaintext highlighter-rouge">about</code>是频道的英文名称，<code class="language-plaintext highlighter-rouge">关于</code>是频道的中文名称：</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">about</span><span class="pi">:</span> 
+  <span class="na">name</span><span class="pi">:</span> <span class="s">关于</span>
+<span class="na">manual</span><span class="pi">:</span> 
+  <span class="na">name</span><span class="pi">:</span> <span class="s">手册</span>
+</code></pre></div></div>
+
+<p>设置好频道之后，需要在目录<code class="language-plaintext highlighter-rouge">c/</code>中创建以频道英文名称命名的频道页：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▾ c/
+    about.md
+    manual.md
+</code></pre></div></div>
+
+<p>频道页内容如下，每个频道页有各自的title、keywords以及description，category的值是当前频道的英文名：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">---</span>
+layout: default 
+title: 站务信息
+keywords:  Jekyll静态模版,站务通知,关于本站,消息列表
+description: Jekyll静态博客模板的站务信息列表，模版更新通知
+pagination:
+  category: about
+  enabled: <span class="nb">true
+  </span>permalink: /:num/
+<span class="nt">---</span>
+<span class="o">{</span>% include pagination.html <span class="nv">paginator</span><span class="o">=</span>paginator %<span class="o">}</span>
+</code></pre></div></div>
+
+<p>频道的中文名显示在网站上方（见本站顶部），连接到频道页，频道页中是当前频道的所有文章列表。</p>
+
+<p>网站上方频道页的呈现顺序与每个频道的第一篇文章的时间排序顺序相同。</p>
+
+<p>设置文章的categories时，使用频道的英文名称。</p>
+
+<h2 id="站点标签汇总tallhtml">站点标签汇总：t/all.html</h2>
+
+<p><code class="language-plaintext highlighter-rouge">t/all/html</code>站点使用的所有标签，以及标签下的文章。</p>
+
+<h2 id="定制网站组件_includeshtml">定制网站组件：_includes/*.html</h2>
+
+<p><code class="language-plaintext highlighter-rouge">_includes</code>中存放的是网站的组件，这些组件被<code class="language-plaintext highlighter-rouge">_layouts</code>中的页面模版引用，根据自己的需要修改这些组件中的内容。</p>
+
+<p><strong>head.html</strong>：每个网页的head，在这里添加统计代码，google ads全局代码。</p>
+
+<p><strong>nav.html</strong>：网站的导航栏，默认包含所有有文章的频道，在这里添加连接到其它网址的频道。</p>
+
+<p><strong>banner.html</strong>：位于导航栏正下方，与屏幕同宽，用来设置大幅轮换的Banner。</p>
+
+<p><strong>rsidebar.html</strong>：网页的右侧边栏，宽度为336px，屏幕宽度小于992px时不显示。</p>
+
+<p><strong>pageheader.html</strong>：内容中标题正下方紧邻的区域。</p>
+
+<p><strong>pagetag.html</strong>：文章所属目录、标签。</p>
+
+<p><strong>author.html</strong>：作者、文章更新时间。</p>
+
+<p><strong>top_ad.html</strong>：广告区域，正文开始之前。</p>
+
+<p><strong>social.html</strong>：转载收藏按钮，正文开始之前。</p>
+
+<p><strong>pre_and_next.html</strong>：当前栏目的前一篇和后一篇文章连接。</p>
+
+<p><strong>copyright.html</strong>：版权信息。</p>
+
+<p><strong>bottom_ad.html</strong>：广告区域，正文之后。</p>
+
+<p><strong>related.html</strong>：相关文章，Google的相关页广告。</p>
+
+<p><strong>recent.html</strong>：全站最近十篇文章。</p>
+
+<p><strong>footer.html</strong>：网页的最底部区域。</p>
+
+<p><strong>notfound.html</strong>：404页面内容。</p>
+
+<p><strong>error.html</strong>：50x页面内容。</p>
+
+<p><strong>pagination.html</strong>：文章目录列表。</p>
+
+<p>这些组件的位置在<code class="language-plaintext highlighter-rouge">_layouts</code>中的模版文件里设置。</p>
+
+<h2 id="css与js文件">css与js文件</h2>
+
+<p>css和js文件位于<code class="language-plaintext highlighter-rouge">assets</code>目录中，根据需要修改。</p>
+
+<h2 id="网站首页indexmd">网站首页：index.md</h2>
+
+<p><code class="language-plaintext highlighter-rouge">index.md</code>是网站首页呈现的内容，默认展示所有站点所有频道中的文章。</p>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://jekyllrb.com/" title="Jekyll: Transform your plain text into static websites and blogs.">Jekyll: Transform your plain text into static websites and blogs.</a></li>
+</ol>
+
+
+</div>
+
+<div class="copyright">
+    <!--div style="text-align:center;">
+    
+    <img style="max-width: 250px" src="/blog/img/money.jpg"/>
+    <p><a style="text-align:center;color:red" href="/blog/img/money.jpg">微信公众号</a></p>
+    
+</div-->
+
+
+<div style="text-align:center">
+    <p style="color:gray"><span>作者:李佶澳</span>&nbsp;&nbsp;<span>更新时间:2019-05-07 23:36:21 +0800</span></p>
+
+</div>
+
+
+<!-- 底部二维码并列 -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1398175214"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->
+
+</div>
+
+<div style="text-align:center">
+  <p>
+
+<span class="glyphicon glyphicon-folder-open" style="color:lightgray"></span>
+
+
+<span>&nbsp<a href="/blog/c/tutorial/">系列教程</a>&nbsp</span>
+
+
+
+<span class="glyphicon glyphicon-tag" style="color:lightgray"></span>
+<span><a href="/blog/t/all/#使用手册">使用手册</a>&nbsp</span>
+
+</p>
+
+</div>
+
+<div>
+  
+<div class="prevnext">
+    <div style="text-align:left">
+        
+        <span>上一篇：</span><span><a href="/blog/tutorial/2019/05/07/02-add-post/">第二步：添加文章</a></span>
+        
+    </div>
+
+    <div style="text-align:right">
+      
+      <span>下一篇：</span><span><a href="/blog/tutorial/2019/05/01/00-about/">一个Jekyll静态博客网站的诞生</a></span>
+       
+    </div>
+</div>
+
+
+</div>
+
+            </article>
+
+
+            
+            <aside class="rsidebar">
+                <div class="rsidebar-content">
+  <div class="searchbar ">
+    <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+    <div class="row">
+      <div class="">
+        <input name="sitesearch" type="hidden" value="lijiaocn.com">
+        <input autocomplete="on" class="form-controls search" name="q" placeholder="站内搜索" required="required"  type="text">
+        <button class="button" type="submit">Google</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!--div class="">
+    <h4 style="color:brown">专属公众号（微信扫一扫）</h4>
+    <img src="/blog/img/self.jpg"></img>
+  </div-->
+
+  <div class="">
+    <a href="https://www.lijiaocn.com/shop"><h3>每日红包</h3></a>
+    <a target="_blank" style="" href="https://www.amazon.cn?tag=znrio-23">亚马逊图书</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WYppWas1DZpVXZmcDOwMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiRyUSbvNmLzYTMuU3b5ZkMlYkMlE0MlAHd0hWP0Zibj9">网易严选</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?site_id=224482&lid=4193&aid=61&euid=lijiaocn&t=http%3A%2F%2Fwww.360buy.com%2F">京东</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=lAHd0hWP0Zibj9WYppWas1DZpVXZmQDOzMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiJpFWbvVHZfB3ckR0Ml02byZmeGNTJGJTJt92Yu8Wd69WY6ZkMlYkMlE0M">造作</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=m0DZpVXZmITO5MTPklWYmAjMzUjMy0DZp9VZ0l2cm02bj5CdyF2d55yd3dnRyUiRyUSQzUycwRHdo1Dd" >艺网</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ibj9WYppWas1DZpVXZmMDMxITPklWYmAjMzUjMy0DZp9VZ0l2cmYiJuNmLt92YukHbu9WZz9mcuc3d3ZkMlYkMlE0MlAHd0hWP0Z">roseonly</a>
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=o1DdmYXYu1DZpVXZmIDO5cTPklWYmITMyUzM30DZp9VZ0l2cmYiJGJTJuNmLt92YuMXYklGZh5yd3dnRyUiRyUSQzUycwRHd&dm_fid=16055">阿迪达斯</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Hd0hWP0Zidh5WPklWdlZyN4MTPklWYmUTMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUSbvNmLsxWYtZnL3d3dGJTJGJTJBNTJzB&dm_fid=16055">华为</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=0RHa9QnJyFmYlRWaz1DZpVXZmATNwkTPklWYmMDMyUzM30DZp9VZ0l2cmYkMlA3boNnRyUibjZkMl02bj5icv52bolGauc3d3ZkMlYkMlE0MlMHc&dm_fid=16055">荣耀</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=j9WYppWas1DZpVXZmczM3ETPklWYmAjMzUjMy0DZp9VZ0l2cmYiJGJTJt92YuEGbvF2auc3d3ZkMlYkMlE0MlAHd0hWP0Zib">考拉海购</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Ha9QnJ2Fmb9QWa1VmJ0YTPklWYmYDMyUzM30DZp9VZ0l2cmYiJGJTJt92YucmbhR2ZuFGZuc3d3ZkMlYkMlE0MlMHc0R&dm_fid=16055">当当</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ukWepFXauAXa2ZkMlYkMlE0MlMHc0RHa9QnJ2Fmb9QWa1VmJ5UDN0ETPklWYmkDMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUyclxWYzRnbp9maGJTJu9WauVnRyUSe0lmdpR3YhZkMlAVSWVDbtRHaGJTJt92Y&dm_fid=16055">爱奇艺联名会员（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WaqlGb9QWa1VmJ0ITMwETPklWYmEDM5kzM30DZp9VZ0l2cm02bj5ibhVHdpVWbukmRyUiRyUSQzUycwRHdo1Ddm42YvF&dm_fid=16055">美团外卖红包（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=2Fmb9QWa1VmJ3ITMwETPklWYmADMyUzM30DZp9VZ0l2cmYiJt92Yu4WY1RXal1mLpZkMlYkMlE0MlMHc0RHa9QnJ&dm_fid=16052">美团闪购红包（手机打开）</a>&nbsp;
+  </div>
+
+  <div class="">
+    <img src="/blog/img/money.jpg"></img>
+  </div>
+  <!--div class="">
+    <h4 style="color:brown">淘宝天猫优惠券（微信扫一扫）</h4>
+    <img src="https://www.lijiaocn.com/img/tuanhaohuo.jpg"></img>
+  </div-->
+
+  <div class="">
+    <h5 style="color:gray">赞助商广告</h5>
+  <!-- 右侧边栏广告 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2723439605"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告2 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4426808013"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告3 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="3551466770"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+</div>
+
+            </aside>
+            
+        </div>
+        <div class="main-footer">
+            <div class="page_bottom_ad">
+                <!-- 底部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4061827929"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+
+            <div class="related">
+                <!-- Google 匹配内容页面-->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-format="autorelaxed"
+   data-ad-client="ca-pub-8176866190626448"
+   data-ad-slot="6443696990"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+    <p>
+<span></span>
+<span>Copyright @2011-2019 All rights reserved.</span>
+</p>
+
+<p>
+<span>友情链接:</span>&nbsp;
+<span><a style="color:white"  href="/note/">小鸟笔记</a></span>&nbsp;
+<span><a style="color:white"  href="/soft/">软件手册</a></span>&nbsp;
+<span><a style="color:white"  href="/prog/">编程手册</a></span>&nbsp;
+<span><a style="color:white"  href="/oper/">运营手册</a></span>&nbsp;
+<span><a style="color:white"  href="/movie/">爱马影视</a></span>&nbsp;
+<span><a style="color:white"  href="/class/">网络课程</a></span>&nbsp;
+<span><a style="color:white"  href="/skill/">奇技淫巧</a></span>&nbsp;
+<span><a style="color:white"  href="/tutorial/">课程文档</a></span>&nbsp;
+<span><a style="color:white"  href="/wechat/news/">精选文章</a></span>&nbsp;
+<span><a style="color:white"  href="https://www.baidu.com/">百度搜索</a></span>
+<span><a style="color:white"  href="https://www.google.com/">谷歌搜索</a></span>
+</p>
+
+    </footer>
+
+    <script src="/blog/assets/js/jquery-1.24.4.min.js"></script>
+    <script src="/blog/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/blog/assets/js/body.js"></script>
+</body>
+</html>

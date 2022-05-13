@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="博客模版：Dribbble 采用邀请制，只有被认可的设计师，成为了 player 才能提交作品和评论，普通用户只能看和点赞">
+<meta name="keywords" content="博客模版,dribbble,设计师,dribbble邀请码,dribbble上传,追波">
+<meta name="author" content="">
+
+<title>Dribbble追波可提交作品账号邀请码，注册申请UI设计APP设计师 博客模版</title>
+
+<link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap.min.css">
+<!--link rel="stylesheet" type="text/css" href="/blog/assets/bootstrap-3.3.7/css/bootstrap-theme.min.css"-->
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/default.css">
+<link rel="stylesheet" type="text/css" href="/blog/assets/css/highlight.css">
+<link rel="alternate" type="application/rss+xml" title="博客模版" href="/feed.xml">
+<link rel="icon" href="/favicon.ico">
+
+<style type="text/css">
+body{
+	background-image: url(/blog/img/bg.png);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+</style>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "http://localhost:4001/blog/img/logo-112x112.jpg",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "http://localhost:4001"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "http://localhost:4001",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "博客模版",                    //组织或个人名称
+      "url": "http://localhost:4001",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          
+          
+          "name": "共享资源",
+          "item": "http://localhost:4001/blog/c/share/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "会员注册",
+          "item": "http://localhost:4001/blog/t/all#会员注册"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "Dribbble追波可提交作品账号邀请码，注册申请UI设计APP设计师",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "http://localhost:4001/blog/img/cover/1x1/dribbble.jpg",  //至少：600*600 = 360 000
+        "http://localhost:4001/blog/img/cover/4x3/dribbble.jpg",  //至少：800*600 = 480 000
+        "http://localhost:4001/blog/img/cover/16x9/dribbble.jpg"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": ""    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "博客模版",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "http://localhost:4001/blog/img/logo-112x112.jpg" //发布机构Logo,遵循
+         }
+      },
+      "description": "Dribbble 采用邀请制，只有被认可的设计师，成为了 player 才能提交作品和评论，普通用户只能看和点赞",
+      "mainEntityOfPage": "http://localhost:4001/blog/share/2019/07/20/dribbble/",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+
+
+
+<!--Google ads 全局依赖代码 -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics 全局依赖代码-->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-105389858-1"></script>
+<!-- 需要尽早执行的js代码 -->
+<script async="async" src="/blog/assets/js/head.js" ></script>
+
+</head>
+<body>
+    <nav class="topnav">
+        <!-- display sm md lg -->
+<div class="container" >
+  <div class="navbar-header">
+    <button id="navb" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar" style="color:black"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand hidden-sm">
+      <span><a href="http://localhost:4001/blog/" title="主页">博客模版</a></span>
+      <span class="glyphicon glyphicon-hand-right" style="margin-left:15px"></span>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="categories">
+    <ul class="nav navbar-nav">
+       
+      <li><a href="/blog/c/tutorial/">系列教程</a></li>
+       
+      <li><a href="/blog/c/book/">读书笔记</a></li>
+       
+      <li><a href="/blog/c/know/">认知感悟</a></li>
+       
+      <li><a href="/blog/c/money/">金钱管理</a></li>
+       
+      <li><a href="/blog/c/policy/">政策政务</a></li>
+       
+      <li><a href="/blog/c/skill/">软件技巧</a></li>
+       
+      <li><a href="/blog/c/share/">共享资源</a></li>
+      
+      <li><a href="/blog/t/all/">标签</a></li>
+    </ul>
+  </div>
+</div>
+
+    </nav>
+
+    <section class="banner">
+        
+    </section>
+
+    <section class="main">
+        <div class="main-header">
+            <div class="title">
+                <h1>Dribbble追波可提交作品账号邀请码，注册申请UI设计APP设计师</h1>
+            </div>
+
+            <div class="pageheader">
+                <p>
+<span>
+<a target="_blank" style="color:red;font-weight:bold" href="https://www.lijiaocn.com/shop">每日红包&精选购物</a>
+</span>
+</p>
+
+
+            </div>
+
+            <div class="top_ad">
+                <!-- 顶部条幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1000173679"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                <br>
+            </div>
+
+            <div class="top_social">
+                
+            </div>
+        </div>
+
+        <div class="main-body">
+            <article class="content">
+                
+<div style="text-align:center">
+  <img src="/blog/img/cover/16x9/dribbble.jpg" alt="Dribbble追波可提交作品账号邀请码，注册申请UI设计APP设计师"/>
+</div>
+
+
+<div>
+  <h2 id="本篇目录">本篇目录</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#本篇目录" id="markdown-toc-本篇目录">本篇目录</a></li>
+  <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
+  <li><a href="#自助注册方法" id="markdown-toc-自助注册方法">自助注册方法</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="说明">说明</h2>
+
+<p>如果自行注册失败，可以考虑淘宝上的服务：</p>
+
+<ul>
+  <li>
+    <p>Dribbble追波账号邀请码注册申请UI设计APP非Pinterest/behance 【在售价】5.00 元</p>
+  </li>
+  <li>
+    <p><a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DxxcaMIqlpGwcQipKwQzePOeEDrYVVa64LKpWJ%2Bin0XLjf2vlNIV67qJVUS6XFTI4Nq%2BDna%2F8eQdFzjN9hD2WgqNloZYdv3EG6YKsWt4FgAJeRxeL6RsSmF9EeTtntI440rU7bvMfl7FBqPx5cMeZb0MRsemG2baFotYzDcQ4SzIk3ajAyOG5%2FMpTZHPDpHKktpM%2F5vmXK17GDF1NzTQoPw%3D%3D&amp;scm=null&amp;pvid=null&amp;app_pvid=59590_11.27.49.242_438_1563594076415&amp;ptl=floorId:17741;app_pvid:59590_11.27.49.242_438_1563594076415&amp;union_lens=lensId:0b0f6818_0e81_16c0d77f477_c562">【立即下单】点击链接立即下单</a></p>
+  </li>
+</ul>
+
+<p>全球范围内，最具有影响力的两个设计师社区：Behance 和 Dribbble （俗称：追波），Behance 是 Adobe 旗下的，只要你注册个 Adobe 的账号就能提交作品了，Dribbble 采用邀请制，只有被认可的设计师，成为了 player 才能提交作品和评论，普通用户只能看和点赞。找工作的时候，在简历里带上 Dribbble 的链接，那是倍儿有面子的事情。有些企业宣称，只要你是 Dribbble 的正式会员，直接录用！</p>
+
+<h2 id="自助注册方法">自助注册方法</h2>
+
+<p>准备工作：</p>
+
+<ol>
+  <li>注册 Dribbble 账号；</li>
+  <li>注册 Behance 账号；</li>
+  <li>把作品提交到 Behance，建议数量在7个左右，5~9个比较合适；</li>
+</ol>
+
+<p>申请 Dribble Player：</p>
+
+<ol>
+  <li>在账号设置里，把 Prospect 的选项勾上，这表明你希望成为 player；</li>
+  <li>在账号设置里，注明自己作品的网址，让审核人员去检查；</li>
+  <li>关注 Dribbble 的官号；</li>
+</ol>
+
+<p>找邀请码：</p>
+
+<ol>
+  <li>找到有邀请码的人；</li>
+  <li>按他的要求去做，通常会要求：点赞、关注、发邮件；</li>
+  <li>等待结果。如果没有回音，继续找，继续发邮件；</li>
+</ol>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li><a href="https://www.jianshu.com/p/5674d001299e">手把手教你怎么拿到 Dribbble 邀请</a></li>
+</ol>
+
+</div>
+
+<div class="copyright">
+    <!--div style="text-align:center;">
+    
+</div-->
+
+
+
+<!-- 底部二维码并列 -->
+<!--ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="1398175214"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->
+
+</div>
+
+<div style="text-align:center">
+  <p>
+
+<span class="glyphicon glyphicon-folder-open" style="color:lightgray"></span>
+
+
+<span>&nbsp<a href="/blog/c/share/">共享资源</a>&nbsp</span>
+
+
+
+<span class="glyphicon glyphicon-tag" style="color:lightgray"></span>
+<span><a href="/blog/t/all/#会员注册">会员注册</a>&nbsp</span>
+
+</p>
+
+</div>
+
+<div>
+  
+<div class="prevnext">
+    <div style="text-align:left">
+        
+        <span>上一篇：</span><span><a href="/blog/share/2019/07/20/cleanmymac/">正版CleanMyMac x/激活码/序列号/Mac软件清理工具</a></span>
+        
+    </div>
+
+    <div style="text-align:right">
+      
+      <span>下一篇：</span><span><a href="/blog/share/2019/07/20/haodiqunqu/">2019豪迪QQ群发去小尾巴后缀/注册码/永久更新</a></span>
+       
+    </div>
+</div>
+
+
+</div>
+
+            </article>
+
+
+            
+            <aside class="rsidebar">
+                <div class="rsidebar-content">
+  <div class="searchbar ">
+    <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+    <div class="row">
+      <div class="">
+        <input name="sitesearch" type="hidden" value="lijiaocn.com">
+        <input autocomplete="on" class="form-controls search" name="q" placeholder="站内搜索" required="required"  type="text">
+        <button class="button" type="submit">Google</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+  <!--div class="">
+    <h4 style="color:brown">专属公众号（微信扫一扫）</h4>
+    <img src="/blog/img/self.jpg"></img>
+  </div-->
+
+  <div class="">
+    <a href="https://www.lijiaocn.com/shop"><h3>每日红包</h3></a>
+    <a target="_blank" style="" href="https://www.amazon.cn?tag=znrio-23">亚马逊图书</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WYppWas1DZpVXZmcDOwMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiRyUSbvNmLzYTMuU3b5ZkMlYkMlE0MlAHd0hWP0Zibj9">网易严选</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?site_id=224482&lid=4193&aid=61&euid=lijiaocn&t=http%3A%2F%2Fwww.360buy.com%2F">京东</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=lAHd0hWP0Zibj9WYppWas1DZpVXZmQDOzMTPklWYmAjMzUjMy0DZp9VZ0l2cmYiJpFWbvVHZfB3ckR0Ml02byZmeGNTJGJTJt92Yu8Wd69WY6ZkMlYkMlE0M">造作</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=m0DZpVXZmITO5MTPklWYmAjMzUjMy0DZp9VZ0l2cm02bj5CdyF2d55yd3dnRyUiRyUSQzUycwRHdo1Dd" >艺网</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ibj9WYppWas1DZpVXZmMDMxITPklWYmAjMzUjMy0DZp9VZ0l2cmYiJuNmLt92YukHbu9WZz9mcuc3d3ZkMlYkMlE0MlAHd0hWP0Z">roseonly</a>
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=o1DdmYXYu1DZpVXZmIDO5cTPklWYmITMyUzM30DZp9VZ0l2cmYiJGJTJuNmLt92YuMXYklGZh5yd3dnRyUiRyUSQzUycwRHd&dm_fid=16055">阿迪达斯</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Hd0hWP0Zidh5WPklWdlZyN4MTPklWYmUTMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUSbvNmLsxWYtZnL3d3dGJTJGJTJBNTJzB&dm_fid=16055">华为</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=0RHa9QnJyFmYlRWaz1DZpVXZmATNwkTPklWYmMDMyUzM30DZp9VZ0l2cmYkMlA3boNnRyUibjZkMl02bj5icv52bolGauc3d3ZkMlYkMlE0MlMHc&dm_fid=16055">荣耀</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=j9WYppWas1DZpVXZmczM3ETPklWYmAjMzUjMy0DZp9VZ0l2cmYiJGJTJt92YuEGbvF2auc3d3ZkMlYkMlE0MlAHd0hWP0Zib">考拉海购</a>&nbsp;
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=Ha9QnJ2Fmb9QWa1VmJ0YTPklWYmYDMyUzM30DZp9VZ0l2cmYiJGJTJt92YucmbhR2ZuFGZuc3d3ZkMlYkMlE0MlMHc0R&dm_fid=16055">当当</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=ukWepFXauAXa2ZkMlYkMlE0MlMHc0RHa9QnJ2Fmb9QWa1VmJ5UDN0ETPklWYmkDMyUzM30DZp9VZ0l2cmwWb0hmL4VGZulmRyUyclxWYzRnbp9maGJTJu9WauVnRyUSe0lmdpR3YhZkMlAVSWVDbtRHaGJTJt92Y&dm_fid=16055">爱奇艺联名会员（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=WaqlGb9QWa1VmJ0ITMwETPklWYmEDM5kzM30DZp9VZ0l2cm02bj5ibhVHdpVWbukmRyUiRyUSQzUycwRHdo1Ddm42YvF&dm_fid=16055">美团外卖红包（手机打开）</a>&nbsp;
+    <br>
+    <a target="_blank" style="" href="https://c.duomai.com/track.php?k=2Fmb9QWa1VmJ3ITMwETPklWYmADMyUzM30DZp9VZ0l2cmYiJt92Yu4WY1RXal1mLpZkMlYkMlE0MlMHc0RHa9QnJ&dm_fid=16052">美团闪购红包（手机打开）</a>&nbsp;
+  </div>
+
+  <div class="">
+    <img src="/blog/img/money.jpg"></img>
+  </div>
+  <!--div class="">
+    <h4 style="color:brown">淘宝天猫优惠券（微信扫一扫）</h4>
+    <img src="https://www.lijiaocn.com/img/tuanhaohuo.jpg"></img>
+  </div-->
+
+  <div class="">
+    <h5 style="color:gray">赞助商广告</h5>
+  <!-- 右侧边栏广告 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="2723439605"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告2 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4426808013"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+
+  <div class="">
+  <!-- 右侧边栏广告3 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="3551466770"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+</div>
+
+            </aside>
+            
+        </div>
+        <div class="main-footer">
+            <div class="page_bottom_ad">
+                <!-- 底部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8176866190626448"
+     data-ad-slot="4061827929"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+
+            <div class="related">
+                <!-- Google 匹配内容页面-->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-format="autorelaxed"
+   data-ad-client="ca-pub-8176866190626448"
+   data-ad-slot="6443696990"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+    <p>
+<span></span>
+<span>Copyright @2011-2019 All rights reserved.</span>
+</p>
+
+<p>
+<span>友情链接:</span>&nbsp;
+<span><a style="color:white"  href="/note/">小鸟笔记</a></span>&nbsp;
+<span><a style="color:white"  href="/soft/">软件手册</a></span>&nbsp;
+<span><a style="color:white"  href="/prog/">编程手册</a></span>&nbsp;
+<span><a style="color:white"  href="/oper/">运营手册</a></span>&nbsp;
+<span><a style="color:white"  href="/movie/">爱马影视</a></span>&nbsp;
+<span><a style="color:white"  href="/class/">网络课程</a></span>&nbsp;
+<span><a style="color:white"  href="/skill/">奇技淫巧</a></span>&nbsp;
+<span><a style="color:white"  href="/tutorial/">课程文档</a></span>&nbsp;
+<span><a style="color:white"  href="/wechat/news/">精选文章</a></span>&nbsp;
+<span><a style="color:white"  href="https://www.baidu.com/">百度搜索</a></span>
+<span><a style="color:white"  href="https://www.google.com/">谷歌搜索</a></span>
+</p>
+
+    </footer>
+
+    <script src="/blog/assets/js/jquery-1.24.4.min.js"></script>
+    <script src="/blog/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/blog/assets/js/body.js"></script>
+</body>
+</html>
