@@ -1,0 +1,85 @@
+{% if page.cover %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "logo": "{{ site.url }}{{ site.baseurl }}{{ site.img }}/{{ site.logo }}",    //LOGO图片地址，必须是112x112，.jpg,.png,.gif
+      "url": "{{ site.url }}"               //与Logo相关联的url
+    },
+/*   
+    {   
+      "@type": "WebSite",
+      "url": "{{ site.url }}",              //被搜索的网站
+      "potentialAction": {
+        "@type": "SearchAction", 
+                                                      //targe指定的域名必须是站点域名，不能用第三方搜索
+        "target": "https://www.lijiaocn.com/search?q={search_term_string}+site%3Alijiaocn.com", 
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",                         //社交账号
+	  "name": "{{ site.name }}",                    //组织或个人名称
+      "url": "{{ site.url }}",         //网站地址
+      "sameAs": [
+        "http://www.facebook.com/your-profile",  //社交账号地址，不支持的国内的
+        "http://instagram.com/yourProfile",
+        "http://www.linkedin.com/in/yourprofile",
+        "http://plus.google.com/your_profile"
+      ]
+    },
+*/
+    {
+      "@type": "BreadcrumbList",
+       "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          {% assign key=page.categories[0] %}
+          {% assign infos= site.data.cateinfos %}
+          "name": "{{ infos[key].name }}",
+          "item": "{{ site.url }}{{ site.baseurl }}/c/{{ key }}/"
+       },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.tags[0] }}",
+          "item": "{{ site.url }}{{ site.baseurl }}/t/all#{{  page.tags[0] }}"
+       }]
+    },
+    {
+      "@type": "Article",
+      "dateModified": "2015-02-05T08:00:00+08:00",
+      "datePublished": "2015-02-05T08:00:00+08:00",
+      "headline": "{{ page.title }}",
+      "image": [                                                //提供三张不同比例的高清图片，长x宽 >= 300 000 
+        "{{ site.url }}{{ site.baseurl }}{{ site.img }}/cover/1x1/{{ page.cover }}",  //至少：600*600 = 360 000
+        "{{ site.url }}{{ site.baseurl }}{{ site.img }}/cover/4x3/{{ page.cover }}",  //至少：800*600 = 480 000
+        "{{ site.url }}{{ site.baseurl }}{{ site.img }}/cover/16x9/{{ page.cover }}"  //至少：960*540 = 518 400
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "{{ page.author }}"    //作者名称
+      },
+      "publisher": {
+         "@type": "Organization",
+         "name": "{{ site.name }}",                          //发布机构名称
+         "logo": {
+           "@type": "ImageObject",
+           "url": "{{ site.url }}{{ site.baseurl }}{{ site.img }}/{{ site.logo }}" //发布机构Logo,遵循
+         }
+      },
+      "description": "{{ page.description }}",
+      "mainEntityOfPage": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",       //网页权威链接，无重复网页就设置成当前页地址
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/head/title",                              //指向head中的title
+          "/html/head/meta[@name='description']/@content"  //指向head中的description
+         ]
+      }
+    }
+  ]
+ }
+</script>
+{% endif %}

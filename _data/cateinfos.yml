@@ -1,0 +1,33 @@
+tutorial:
+  name: 系列教程
+share:
+  name: 共享资源 
+know:
+  name: 认知感悟
+book:
+  name: 读书笔记
+skill:
+  name: 软件技巧
+money: 
+  name: 金钱管理
+policy:
+  name: 政策政务
+
+manual:
+  name: 手册
+home: 
+  name: 居家
+belong: 
+  name: 随身
+note: 
+  name: 思路技巧
+szstock:
+  name: 深圳交易所
+shstock:
+  name: 上海交易所
+license: 
+  name: 注册破解
+member: 
+  name: 网站会员
+movie: 
+  name: 影视资源

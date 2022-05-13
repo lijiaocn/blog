@@ -1,0 +1,38 @@
+name: "博客模版"
+url:  "https://www.lijiaocn.com"
+baseurl: "/blog"  
+img:  "/img"
+article: "/blog/img/article"
+logo: logo-112x112.jpg
+ercodeimg:  "/blog/img/money.jpg"
+imgcdn: 
+Copyright: Copyright @2011-2019 All rights reserved.
+ICP-number:
+
+encoding: UTF-8
+future: true
+
+highlighter: rouge
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate-v2
+
+lsi:  false
+excerpt_separator: "----"
+
+permalink: pretty
+pagination:
+  enabled: true
+  per_page: 20
+  permalink: '/p/:num/'
+  title: ':title | :num of :max'
+  limit: 0
+  sort_reverse: true
+  trail:
+    before: 4
+    after: 4
+
+#  sort_field: 'createdate'

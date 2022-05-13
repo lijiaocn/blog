@@ -1,0 +1,24 @@
+---
+layout: default
+title:  全站标签
+keywords:  Jekyll静态模版,标签
+description: Jekyll静态模版展示网站所有标签下的文章列表。
+noprenext: true
+
+---
+
+<h5><a id="全站标签" href="#全站标签">全站标签:</a></h5>
+<p style="text-align:center">
+{% for tag in site.tags %}
+<span><a href="{{ site.baseurl }}/t/all/#{{ tag[0] }}">{{ tag[0] }}</a>&nbsp&nbsp&nbsp</span>
+{% endfor %}
+</p>
+
+{% for tag in site.tags %}
+<h5><a id="{{ tag[0]}}" href="#{{tag[0]}}">{{ tag[0] }}:</a></h5>
+	<ul>
+	{% for post in tag[1] %}
+	<li><a href="{{ site.baseurl }}{{ post.url }}">《{{ post.title }}》</a></li>
+	{% endfor %}
+	</ul>
+{% endfor %}
